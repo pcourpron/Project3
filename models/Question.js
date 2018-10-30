@@ -22,7 +22,8 @@ const questionSchema = new Schema({
     type: Array
   },
   tests: {
-    type: Array
+    type: Array,
+    required: true
   }
 });
 
