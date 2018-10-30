@@ -6,12 +6,7 @@ import Signup from "./components/Signup/Signup.js";
 import Userlogin from "./components/Userlogin/Userlogin.js";
 //import Product from "./components/pages/Product.js";
 import Question from "./components/Question/Question"
-<<<<<<< HEAD
-import Categories from "./components/Categories/Categories.js";
-import axios from 'axios'
-=======
 import Category from "./components/Category/Category"
->>>>>>> ab552367c039c243e9013f5fc32b2f0d61f77ac4
 
 class App extends React.Component {
   constructor(props){
