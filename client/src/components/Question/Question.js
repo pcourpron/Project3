@@ -2,21 +2,15 @@ import React, { Component } from "react";
 import AceEditor from "react-ace";
 import "./Question.css";
 
+import brace from "brace";
+import axios from "axios";
+import equal from "deep-strict-equal";
 
+import '../../../node_modules/brace/mode/javascript'
+
+import '../../../node_modules/brace/theme/dracula'
 class Question extends Component {
-
-    state = {
-        code: ""
-    }
-
-    handleChange = (event) => {
-        this.setState({ code: event})
-        console.log(event)
-    }
-    submitCode = () => {
-        // hit the submit code back end route sending with this.state.code
-
-    }
+    
 
     render() {
         return (
@@ -45,22 +39,13 @@ class Question extends Component {
 
                                         <AceEditor
                                             mode="javascript"
-                                            theme="github"
+                                            theme="dracula"
                                             onChange={ this.handleChange}
                                             name="userCode"
                                             editorProps={{ $blockScrolling: true }}
                                             value = {this.state.code}
-                                        
                                         />
 
-
-                                        {/* <textarea
-                                            type="text"
-                                            value={this.state.code}
-                                            id="userCode"
-                                            onChange={this.handleChange}
-                                            class="form-control"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" /> */}
                                         <button
                                             className="btn btn-primary"
                                             onClick={this.submitCode}>Submit</button>
