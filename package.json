@@ -25,6 +25,16 @@
     "if-env": "^1.0.4",
     "jasmine-node": "^1.16.2",
     "mongoose": "^5.3.6",
+<<<<<<< HEAD
     "request": "^2.88.0"
+=======
+    "react-background-video-player": "^1.1.5",
+    "react-bootstrap": "^0.32.4",
+    "react-native-video": "^3.2.1",
+    "react-router-dom": "^4.3.1",
+    "reactstrap": "^6.5.0",
+    "typed.js": "^2.0.9",
+    "video.js": "^7.2.4"
+>>>>>>> 6562c45d0beaab6b227cc8c86bed91709646eb96
   }
 }
