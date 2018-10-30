@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Article = require("../models/article");
 var db = require("../models");
+var equal = require('deep-strict-equal');
 
 router.post("/save", function(req, res) {
   // as long as req.body matches what the model expects, this should insert into the database
@@ -28,5 +29,16 @@ router.get("/saved", function(req, res) {
     }
   })
 });
+
+  router.post("/post", function(req, res) {
+    
+    eval(`{${req.body.function}}`)
+    res.send(Test([4,5,3,6,4]))
+  
+    
+});
+
+
+
 
 module.exports = router;

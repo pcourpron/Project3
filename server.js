@@ -1,3 +1,4 @@
+
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -5,6 +6,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+var exports = module.exports = {};
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,13 +21,17 @@ const routes = require("./routes/api.js");
 app.use(routes);
 
 // Send every other request to the React app
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytreact");
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
+var server =app.listen(PORT, () => {
+  console.log(`🌎 ==> Server now on port ${PORT}!`);      
 });
+
+exports.closeServer = function(){
+  server.close();
+};
