@@ -21,13 +21,13 @@ const Landingpage = () =>{
                 </div>
             </div>
             <div className = "welcome">
-                <h1>Welcome!</h1>
-                <h4>Learn and Practice Algorithms!</h4>
+                <h1 class="welcome">Welcome!</h1>
+                <h4 class ="subtitle">Learn and Practice Algorithms!</h4>
                 <div className = "big-button">
                     <button type="button" className = " btn-light btn-lg btn-block" id = "large-button">Let's Get Started!</button>
                     <div className = "text">
                         <div id = "p-text">
-                        <p> Hey, purpose of this application is to help you master algorithms, 
+                        <p class="purpose"> Hey, purpose of this application is to help you master algorithms, 
                             and coding as well. There are two ways: First is to hit </p>
                         </div>
                     </div>

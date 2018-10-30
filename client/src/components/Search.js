@@ -24,8 +24,6 @@ const Search = (props) => {
                     <h3  style={{ width: '100%', textAlign: 'center' }}>End Year</h3>
                     <input onChange={(e) =>props.endYear(e)}></input>
 
-         
-
                 </div>
                 <div className='row justify-content-center'>
             
