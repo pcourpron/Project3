@@ -20,11 +20,23 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+<<<<<<< HEAD
     "deep-strict-equal": "^0.2.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "jasmine-node": "^1.16.2",
     "mongoose": "^5.3.6",
     "request": "^2.88.0"
+=======
+    "express": "^4.16.4",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.3.6",
+    "react-background-video-player": "^1.1.5",
+    "react-bootstrap": "^0.32.4",
+    "react-native-video": "^3.2.1",
+    "react-router-dom": "^4.3.1",
+    "typed.js": "^2.0.9",
+    "video.js": "^7.2.4"
+>>>>>>> f4bca6132f1e4fb483c009bde089b3e219e1a22d
   }
 }
