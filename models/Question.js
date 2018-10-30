@@ -24,6 +24,10 @@ const questionSchema = new Schema({
   tests: {
     type: Array,
     required: true
+  },
+  questionType : {
+    type: String,
+    required: true
   }
 });
 

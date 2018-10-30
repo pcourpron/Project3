@@ -19,6 +19,8 @@ router.get("/api/oneQuestion/:id", function(req, res){
 router.post("/api/createQuestion", function(req, res){
   db.Question.create(req.body).then(function (data){
     res.json(data);
+  }).catch(function(err){
+    res.send(err)
   });
 });
 
@@ -34,5 +36,12 @@ router.put("/api/userQuestionScores/:id", function(req, res){
     })
   
 });
+
+router.get('/getAllCoding/:type',function(req,res){
+  db.Question.find({questionType: req.params.type}).then(function (data){
+    res.json(data);
+  });
+})
+
 
 module.exports = router;
