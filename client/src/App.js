@@ -7,9 +7,11 @@ import Userlogin from "./components/Userlogin/Userlogin.js";
 //import Product from "./components/pages/Product.js";
 import Question from "./components/Question/Question"
 import Category from "./components/Category/Category"
+import Categories from './components/Categories/Categories'
+import axios from 'axios'
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.getQuestions = this.getQuestions.bind(this)
@@ -23,45 +25,45 @@ class App extends React.Component {
     questionType: 'coding',
     questions: ['hi'],
     selectedCategory: '',
-    showQuestions : [],
-    userCode :  ``,
-    codeResponse : {},
-    categories:[],
+    showQuestions: [],
+    userCode: ``,
+    codeResponse: {},
+    categories: [],
     selectedQuestion: ''
   }
 
-  getQuestions= (questionType)=>{
+  getQuestions = (questionType) => {
     console.log(questionType)
-    axios.get(`/getAllCoding/${questionType}`).then((response)=>{
+    axios.get(`/getAllCoding/${questionType}`).then((response) => {
       var categoryArray = []
       response.data.forEach(element => {
         categoryArray.push(element.category)
       });
 
-      var filteredArray = categoryArray.filter(function(item, pos){
-        return categoryArray.indexOf(item)=== pos; 
+      var filteredArray = categoryArray.filter(function (item, pos) {
+        return categoryArray.indexOf(item) === pos;
       });
-      this.setState({questions : response.data})
-      this.setState({categories: filteredArray },function(){
+      this.setState({ questions: response.data })
+      this.setState({ categories: filteredArray }, function () {
         console.log(this.state.categories)
       })
     })
 
   }
 
-  categoryClick = (category) =>{
-    this.setState({selectedCategory: category },function(){
+  categoryClick = (category) => {
+    this.setState({ selectedCategory: category }, function () {
       console.log(this.state.selectedCategory)
     })
   }
 
-  getState = ()=>{
+  getState = () => {
     console.log(this.state)
   }
 
-  selectedQuestion(question){
+  selectedQuestion(question) {
     console.log(question)
-    this.setState({selectedQuestion : question},function(){
+    this.setState({ selectedQuestion: question }, function () {
       console.log(this.state.selectedQuestion)
     })
 
@@ -71,44 +73,43 @@ class App extends React.Component {
 
 
 
-  componentDidMount(){
+  componentDidMount() {
     this.getQuestions('coding')
   }
 
 
 
-  render (){
-    return(
-  <Router>
-    <div className="container">
-      {/* <Header/> */}
-      <Route exact path="/" component={Landingpage} />
-      <Route exact path="/Signup" component={Signup} />
-      <Route exact path="/Userlogin" component={Userlogin} />
-      <Route exact path="/Question" component = {Question}/>
-<<<<<<< HEAD
+  render() {
+    return (
+      <Router>
+        <div className="container">
+          {/* <Header/> */}
+          <Route exact path="/" component={Landingpage} />
+          <Route exact path="/Signup" component={Signup} />
+          <Route exact path="/Userlogin" component={Userlogin} />
+          <Route exact path='/Question' render={() =>
 
-      <Route exact path = '/Categories' render = {()=> 
+            <Question
+              selectedQuestion = {this.state.selectedQuestion}
+            />}>
 
-        <Categories
-          questionType={this.state.questionType} 
-          getQuestions= {this.getQuestions} 
-          questions = {this.state.questions} 
-          categories = {this.state.categories}
-          selectedCategory = {this.state.selectedCategory}
-          categoryClick = {this.categoryClick}
-          selectQuestion = {this.selectedQuestion}
-          />}>
+          </Route>
+          <Route exact path='/Categories' render={() =>
 
-      </Route>
+            <Categories
+              questionType={this.state.questionType}
+              getQuestions={this.getQuestions}
+              questions={this.state.questions}
+              categories={this.state.categories}
+              selectedCategory={this.state.selectedCategory}
+              categoryClick={this.categoryClick}
+              selectQuestion={this.selectedQuestion}
+            />}>
 
+          </Route>
+        </div>
 
-=======
-      <Route exact path="/Category" component = {Category}/>
-      
->>>>>>> ab552367c039c243e9013f5fc32b2f0d61f77ac4
-    </div>
-  </Router>
+      </Router>
     )
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Questions from '../CategoryRow/Questions';
+import {Link} from 'react-router-dom'
 
 const Categories = (props) => {
 
@@ -16,7 +16,7 @@ const Categories = (props) => {
             <div className='col-md-6'>
                 {props.questions.filter((element) => (element.category === props.selectedCategory)).map(element=>{
                     
-                    return(<div onClick = {()=>{props.selectQuestion(element)}}>{element.text}</div>)
+                    return(<Link to ='/Question'><div onClick = {()=>{props.selectQuestion(element)}}>{element.text}</div></Link>)
                 })
                 }
 

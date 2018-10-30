@@ -9,8 +9,58 @@ import equal from "deep-strict-equal";
 import '../../../node_modules/brace/mode/javascript'
 
 import '../../../node_modules/brace/theme/dracula'
+
+
 class Question extends Component {
+    constructor(props){
+        super(props)
+    }
+    state = {
+        code : ''
+    }
     
+    checker = ()=>{
+        var testing = new Function(` return ${this.state.code}`)()
+        console.log(this.props.selectedQuestion.tests)
+        
+        switch (this.props.selectedQuestion.tests[0].input.length){
+            case 4:
+            this.props.selectedQuestion.tests.forEach(element => {
+                if (!equal(testing(element.input),element.expected)){
+                    console.log('hit')
+                    return 'You DUMB'
+                }
+                
+            });
+            console.log('hit1')
+            return 'You Smart'
+           
+            case 2:
+            this.props.selectedQuestion.tests.forEach(element => {
+                if (!equal(testing(element.input[0],element.input[1]),element.expected)){
+                    console.log('hit2')
+
+                    return 'You DUMB'
+                }
+                console.log('hit3')
+
+                return 'You Smart'
+                
+            });
+            default:
+            console.log('hit4')
+
+            return 'Something Broke!'
+        }
+
+    }
+
+    handleChange= (event)=>{
+        this.setState({code: event})
+    }
+
+
+
 
     render() {
         return (
@@ -40,15 +90,16 @@ class Question extends Component {
                                         <AceEditor
                                             mode="javascript"
                                             theme="dracula"
-                                            onChange={ this.handleChange}
+                                            onChange= {this.handleChange}
                                             name="userCode"
                                             editorProps={{ $blockScrolling: true }}
                                             value = {this.state.code}
+                                   
                                         />
 
                                         <button
                                             className="btn btn-primary"
-                                            onClick={this.submitCode}>Submit</button>
+                                            onClick={this.checker}>Submit</button>
                                     </div>
                                 </div>
                             </div>
