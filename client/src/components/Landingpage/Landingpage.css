@@ -11,7 +11,7 @@
 
 .login {
     font-family: Courier;
-    padding-left: 1400px;
+    padding-left: 80%;
 }
 
 .login-button .logintext {
@@ -53,7 +53,7 @@
     text-align: center;
 }
 
-h1 {
+.welcome {
     font-family: Courier; 
     color: white; 
     font-size: 100px;
@@ -62,7 +62,7 @@ h1 {
   
 }
 
-h4 {
+.subtitle {
     font-family: Courier; 
     color: white; 
     font-size: 60px; 
@@ -92,12 +92,11 @@ h4 {
     font-family: Courier;
 }
 
+<<<<<<< HEAD
 .white {
+=======
+.purpose {
+>>>>>>> ab552367c039c243e9013f5fc32b2f0d61f77ac4
     color: white;
 }
-
-.welcome {
-    padding-top: 2px;
-}
-    
-    
+  

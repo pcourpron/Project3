@@ -1,0 +1,18 @@
+
+.card {
+    text-align: center;
+    /* background-image: url("https://cdn.hipwallpaper.com/i/26/85/bMZEy5.jpg"); */
+}
+
+.body {
+    margin: 25px;
+}
+
+.btn {
+    width: 80%;
+    height: 90%;
+}
+
+.container {
+    margin-top: 5%;
+}
