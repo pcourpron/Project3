@@ -19,12 +19,18 @@ const routes = require("./routes/api.js");
 app.use(routes);
 
 // Send every other request to the React app
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codingQuestions");
+
+// app.get('/', function(req, res){
+//   res.send('Hello World');
+// });
+
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> Server now on port ${PORT}!`);

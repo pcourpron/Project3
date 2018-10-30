@@ -23,15 +23,16 @@ router.post("/api/createQuestion", function(req, res){
 });
 
 
-router.put("/api/userQuestionScores", function(req, res){
-  db.Question.findOneAndUpdate(
-    {$push: {scores: req.body.score}},
-    {$push: {codeTime: req.body.codeTime}},
-    {$push: {runTime: req.body.runTime}},
-    {$push: {bigO: req.body.bigO}}
-  ).then(function (data){
+router.put("/api/userQuestionScores/:id", function(req, res){
+  db.Question.findByIdAndUpdate(
+    req.params.id
+  ,
+    {$push: {scores: req.body.scores, codeTime: req.body.codeTime, runTime: req.body.runTime, bigO: req.body.bigO}}
+  )
+    .then(function (data){
     res.json(data);
-  });
+    })
+  
 });
 
 module.exports = router;
