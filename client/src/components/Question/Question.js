@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import AceEditor from "react-ace";
+import "./Question.css";
+
 
 class Question extends Component {
 
