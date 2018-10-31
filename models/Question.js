@@ -6,6 +6,9 @@ const questionSchema = new Schema({
     type: String, 
     unique: true
   }, 
+  answer: {
+    type: String
+  },
   category: {
     type: String
   },
