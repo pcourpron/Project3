@@ -5,6 +5,8 @@ const Categories = (props) => {
 
 
     return (
+        <div>
+            
         <div className="row" style={{ height: '200px' }}>
             <div className='col-md-6'>
             <div className= 'row justify-content-center' style={{width:'100%'}}>
@@ -32,7 +34,8 @@ const Categories = (props) => {
             </div>
 
         </div>
-    )
+        </div>
+        )
 
 
 }

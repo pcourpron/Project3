@@ -110,17 +110,17 @@ class Question extends Component {
 
                         <div> <h4 className='text-center' style = {{width: '100%'}}>Test Cases:</h4></div>
                         <div class="card">
-                        <AceEditor
-                                            mode="javascript"
-                                            theme="dracula"
-                                            onChange= {this.handleChange}
-                                            name="userCode"
-                                            editorProps={{ $blockScrolling: true }}
-                                            value = 'hi'
-                                            width = '100%'
-                                            height = '200px'
-                                            setOptions ={{showPrintMargin:false}}
-                                            />
+                    <AceEditor
+                                        mode="javascript"
+                                        theme="dracula"
+                                        onChange= {this.handleChange}
+                                        name="userCode"
+                                        editorProps={{ $blockScrolling: true }}
+                                        value = 'hi'
+                                        width = '100%'
+                                        height = '200px'
+                                        setOptions ={{showPrintMargin:false}}
+                                        />
                                             </div>
 
                     </div>

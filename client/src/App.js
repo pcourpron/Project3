@@ -8,11 +8,7 @@ import Userlogin from "./components/Userlogin/Userlogin.js";
 import Question from "./components/Question/Question"
 import Category from "./components/Category/Category"
 import Categories from './components/Categories/Categories'
-<<<<<<< HEAD
-
-=======
 import Admin from "./components/Admin/Admin"
->>>>>>> 832a42c1a043f2db8926beb8d82d1def3dc78380
 import axios from 'axios'
 import QuestionComment from "./components/Comment/index.js";
 
@@ -91,7 +87,6 @@ class App extends React.Component {
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Userlogin" component={Userlogin} />
-<<<<<<< HEAD
           <Route exact path='/Comment'  
           
           render = {()=>
@@ -106,9 +101,7 @@ class App extends React.Component {
 
 
           <Route exact path='/QuestionType' component={Category}/>
-=======
           <Route exact path = "/Admin" component = {Admin}/>
->>>>>>> 832a42c1a043f2db8926beb8d82d1def3dc78380
           <Route exact path='/Question' render={() =>
 
             <Question
