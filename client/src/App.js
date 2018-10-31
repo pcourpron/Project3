@@ -8,6 +8,7 @@ import Userlogin from "./components/Userlogin/Userlogin.js";
 import Question from "./components/Question/Question"
 import Category from "./components/Category/Category"
 import Categories from './components/Categories/Categories'
+import Admin from "./components/Admin/Admin"
 import axios from 'axios'
 
 class App extends React.Component {
@@ -87,6 +88,7 @@ class App extends React.Component {
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Userlogin" component={Userlogin} />
+          <Route exact path = "/Admin" component = {Admin}/>
           <Route exact path='/Question' render={() =>
 
             <Question
