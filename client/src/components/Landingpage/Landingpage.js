@@ -1,8 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import "./Landingpage.css";
  
 
-const Landingpage = () =>{
+const LandingPage = () =>{
     
     return(
         <div className = "container-landingpage">
@@ -24,7 +25,9 @@ const Landingpage = () =>{
                 <h1 class="welcome">Welcome!</h1>
                 <h4 class ="subtitle">Learn and Practice Algorithms!</h4>
                 <div className = "big-button">
+                <Link to='/QuestionType'>
                     <button type="button" className = " btn-light btn-lg btn-block" id = "large-button">Let's Get Started!</button>
+                    </Link>
                     <div className = "text">
                         <div id = "p-text">
                         <p class="purpose"> Hey, purpose of this application is to help you master algorithms, 
@@ -36,4 +39,4 @@ const Landingpage = () =>{
         </div>
     )
 }
-export default Landingpage;
+export default LandingPage;

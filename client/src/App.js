@@ -8,7 +8,9 @@ import Userlogin from "./components/Userlogin/Userlogin.js";
 import Question from "./components/Question/Question"
 import Category from "./components/Category/Category"
 import Categories from './components/Categories/Categories'
+
 import axios from 'axios'
+import QuestionComment from "./components/Comment/index.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class App extends React.Component {
 
   state = {
     questionType: 'coding',
-    questions: ['hi'],
+    questions: [],
     selectedCategory: '',
     showQuestions: [],
     userCode: ``,
@@ -63,9 +65,7 @@ class App extends React.Component {
 
   selectedQuestion(question) {
     console.log(question)
-    this.setState({ selectedQuestion: question }, function () {
-      console.log(this.state.selectedQuestion)
-    })
+    this.setState({ selectedQuestion: question })
 
   }
 
@@ -87,6 +87,20 @@ class App extends React.Component {
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Userlogin" component={Userlogin} />
+          <Route exact path='/Comment'  
+          
+          render = {()=>
+            <QuestionComment    questionType={this.state.questionType}
+            questions={this.state.questions}
+            categories={this.state.categories}
+            selectedCategory={this.state.selectedCategory}
+            selectedQuestion={this.state.selectedQuestion}
+/>
+          }/>
+
+
+
+          <Route exact path='/QuestionType' component={Category}/>
           <Route exact path='/Question' render={() =>
 
             <Question

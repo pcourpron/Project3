@@ -25,6 +25,9 @@ const questionSchema = new Schema({
     type: Array,
     required: true
   },
+  comments: {
+    type:Array
+  },
   questionType : {
     type: String,
     required: true

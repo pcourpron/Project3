@@ -44,4 +44,10 @@ router.get('/getAllCoding/:type',function(req,res){
 })
 
 
+router.get('/getComments/:id',function(req,res){
+  db.Question.findById({_id:req.params.id}).then(function(data){
+    res.json(data)
+  })
+})
+
 module.exports = router;
