@@ -1,0 +1,564 @@
+[
+    {
+        "text": "Create a function that prints out a string",
+        "questionType": "coding",
+        "category": "Basic",
+        "tests": [
+            {
+                "input": "Hello",
+                "expected": "Hello"
+            },
+            {
+                "input": "Interview Questions",
+                "expected": "Interview Questions"
+            },
+            {
+                "input": "Bianca",
+                "expected": "Bianca"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to find the area of a triangle where lengths of the three sides are different (Round three decimals points)",
+        "questionType": "coding",
+        "category": "Math",
+        "tests": [
+            {
+                "input": [
+                    5,
+                    6,
+                    7
+                ],
+                "expected": 14.697
+            },
+            {
+                "input": [
+                    10,
+                    12,
+                    15
+                ],
+                "expected": 59.812
+            },
+            {
+                "input": [
+                    25,
+                    30,
+                    35
+                ],
+                "expected": 367.423
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to convert a given number into hours and minutes.(hours:mintues)",
+        "questionType": "coding",
+        "category": "Time",
+        "tests": [
+            {
+                "input": 71,
+                "expected": "1:11"
+            },
+            {
+                "input": 450,
+                "expected": "7:30"
+            },
+            {
+                "input": 1441,
+                "expected": "24:1"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to find the largest of three integers.",
+        "questionType": "coding",
+        "category": "Math",
+        "tests": [
+            {
+                "input": [
+                    0,
+                    25,
+                    100
+                ],
+                "expected": 100
+            },
+            {
+                "input": [
+                    50,
+                    -25,
+                    55
+                ],
+                "expected": 55
+            },
+            {
+                "input": [
+                    3543,
+                    -4234,
+                    2543,
+                    1343,
+                    4234
+                ],
+                "expected": 4234
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to check if any two numbers are in range 40-60 or in the range 70-100 inclusive.",
+        "questionType": "coding",
+        "category": "Math",
+        "tests": [
+            {
+                "input": [
+                    44,
+                    56
+                ],
+                "expected": "true"
+            },
+            {
+                "input": [
+                    70,
+                    95
+                ],
+                "expected": "true"
+            },
+            {
+                "input": [
+                    50,
+                    89
+                ],
+                "expected": "false"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to reverse any given string",
+        "questionType": "coding",
+        "category": "Work With Strings",
+        "tests": [
+            {
+                "input": "welcome",
+                "expected": "emoclew"
+            },
+            {
+                "input": "javascript",
+                "expected": "tpircsavaj"
+            },
+            {
+                "input": "abcdefghijk",
+                "expected": "kjihgfedcba"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to convert the letters of any given string in alphabetical order.",
+        "questionType": "coding",
+        "category": "Sorting",
+        "tests": [
+            {
+                "input": "kjihgfedcba",
+                "expected": "abcdefghijk"
+            },
+            {
+                "input": "javascript",
+                "expected": "aacijrstv"
+            },
+            {
+                "input": "Exercises",
+                "expected": "Eceeirssx"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to count the number of vowels of this given string ('Javascript')",
+        "questionType": "coding",
+        "category": "Work With Strings",
+        "tests": [
+            {
+                "input": "Javascript",
+                "expected": 3
+            },
+            {
+                "input": "Web Development",
+                "expected": 5
+            },
+            {
+                "input": "Coding",
+                "expected": 2
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to find the number which appears most in any array of integers.",
+        "questionType": "coding",
+        "category": "Finding",
+        "tests": [
+            {
+                "input": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    4,
+                    5
+                ],
+                "expected": 4
+            },
+            {
+                "input": [
+                    -2,
+                    -35,
+                    2,
+                    0,
+                    35,
+                    -2
+                ],
+                "expected": -2
+            },
+            {
+                "input": [
+                    1,
+                    100,
+                    3,
+                    100,
+                    -1,
+                    0,
+                    1,
+                    100
+                ],
+                "expected": 100
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to check if any given number is in this range (0-100).",
+        "questionType": "coding",
+        "category": "Checking",
+        "tests": [
+            {
+                "input": 25,
+                "expected": "true"
+            },
+            {
+                "input": -10,
+                "expected": "false"
+            },
+            {
+                "input": 99,
+                "expected": "true"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to test if any given integer is greater than 15 return the given number, otherwise return 15.",
+        "questionType": "coding",
+        "category": "Checking",
+        "tests": [
+            {
+                "input": 25,
+                "expected": 25
+            },
+            {
+                "input": 10,
+                "expected": 15
+            },
+            {
+                "input": 5,
+                "expected": 15
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript function to validate whether any given value is number or not.",
+        "questionType": "coding",
+        "category": "Checking",
+        "tests": [
+            {
+                "input": "NaN",
+                "expected": "false"
+            },
+            {
+                "input": "43.25",
+                "expected": "true"
+            },
+            {
+                "input": "72",
+                "expected": "true"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript function to check whether any given value types are same or not.",
+        "questionType": "coding",
+        "category": "Checking",
+        "tests": [
+            {
+                "input": [
+                    "12",
+                    100
+                ],
+                "expected": "false"
+            },
+            {
+                "input": [
+                    "12",
+                    "100"
+                ],
+                "expected": "true"
+            },
+            {
+                "input": [
+                    12,
+                    100
+                ],
+                "expected": "true"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to sort any given list of numbers using Quick sort",
+        "questionType": "coding",
+        "category": "Sorting",
+        "tests": [
+            {
+                "input": [
+                    3,
+                    0,
+                    2,
+                    5,
+                    -1,
+                    4,
+                    1
+                ],
+                "expected": "-1, 0, 1, 2, 3, 4, 5"
+            },
+            {
+                "input": [
+                    25,
+                    34,
+                    6,
+                    25,
+                    0
+                ],
+                "expected": "0, 6, 25, 25, 34"
+            },
+            {
+                "input": [
+                    -10,
+                    -55,
+                    -100,
+                    0
+                ],
+                "expected": "-100, -55, -10, 0"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript function to capitalize the first letter of any given string",
+        "questionType": "coding",
+        "category": "Work With Strings",
+        "tests": [
+            {
+                "input": "hello",
+                "expected": "Hello"
+            },
+            {
+                "input": "javascript",
+                "expected": "Javascript"
+            },
+            {
+                "input": "hello world",
+                "expected": "Hello world"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript function that takes any given string which has lower and upper case letters as a parameter and converts upper case letters to lower case, and lower case letters to upper case.",
+        "questionType": "coding",
+        "category": "Work With Strings",
+        "tests": [
+            {
+                "input": "aBcDEfg",
+                "expected": "AbCdeFG"
+            },
+            {
+                "input": "jAvaScRiPt",
+                "expected": "JaVasCrIpT"
+            },
+            {
+                "input": "hello world",
+                "expected": "HELLO WORLD"
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to sum the multiples of 3 and 5 under any given number.",
+        "questionType": "coding",
+        "category": "Math",
+        "tests": [
+            {
+                "input": 10,
+                "expected": 23
+            },
+            {
+                "input": 1000,
+                "expected": 233168
+            },
+            {
+                "input": 123456789,
+                "expected": 3556368288624704
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to compute the greatest common divisor (GCD) of any two positive integers.",
+        "questionType": "coding",
+        "category": "Math",
+        "tests": [
+            {
+                "input": [9, 21],
+                "expected": 3
+            },
+            {
+                "input": [2154, 458],
+                "expected": 2
+            },
+            {
+                "input": [81, 729],
+                "expected": 81
+            }
+        ]
+    },
+    {
+        "text": "Write a JavaScript program to get the integers in any given range",
+        "questionType": "coding",
+        "category": "Finding",
+        "tests": [
+            {
+                "input": [2, 9],
+                "expected": [3, 4, 5, 6, 7, 8]
+            },
+            {
+                "input": [25, 27],
+                "expected": [26]
+            },
+            {
+                "input": [-2, 2],
+                "expected": [1, 0, 1]
+            }
+        ]
+    },
+    {
+        "questionType" :"interview",
+        "category": "Methods",
+        "text": "The property of JSON() method is:",
+        "answer": "Explanation: The JSON format is intended for serialization of data structures and can handle JavaScript primitive values, arrays, and plain objects. It does not know about classes, and when serializing an object, it ignores the object’s prototype and constructor."
+    },
+    {
+        "questionType" :"interview",
+        "category": "HTML",
+        "text": "How is everything treated in HTML DOM?",
+        "answer": "Explanation: In the HTML DOM (Document Object Model), everything is a node"  
+    },
+    {
+        "questionType" :"interview",
+        "category": "HTML",
+        "text": "What is the purpose of the Attr object in the HTML DOM?",
+        "answer": "Explanation: In the HTML DOM, the Attr object represents an HTML attribute"
+    },
+    {
+        "questionType" :"interview",
+        "category": "API",
+        "text": "What is CORS?",
+        "answer": "Explanation: Cross-Origin Resource Sharing (CORS) is a mechanism that enables different resources on a web page to be requested from another domain outside the domain from which the request originated."   
+    },
+    {
+        "questionType" :"interview",
+        "category": "API",
+        "text": "What’s the difference between GET and POST?",
+        "answer": "Explanation: Both are methods used in HTTP requests. Generally it is said that GET is to download data and PUT is to upload data. But we can do both downloading as well as uploading either by GET/POST."   
+    },
+    {
+        "questionType" :"interview",
+        "category": "CSS",
+        "text": "What is a pseudo-class?",
+        "answer": "Explanation: It is a CSS technique which sets the style when an element changes its state. E.g. style changes when mouse hover, different styles for visited or unvisited links, etc."   
+    },
+    {
+        "questionType" :"interview",
+        "category": "Methods",
+        "text": "What are the different three types of pop-up boxes available in JavaScript?",
+        "answer": "Explanation: Alert, Confirm, and Prompt"   
+    },
+    {
+        "questionType" :"interview",
+        "category": "Syntax",
+        "text": "What is the difference between ‘==’ and ‘===’ operators?",
+        "answer": "Explanation: Though both of them belongs to the comparison operator category, the ‘==’ operator checks the value whereas, the ‘===’ operator checks both the value and the type."   
+    },
+    {
+        "questionType" : "interview",
+        "category": "Functions",
+        "text": "What is a callback function?",
+        "answer": "Explanation: A callback function is utilized to limit this from happening because it is not called until the previous line of code has thoroughly executed."   
+    },
+    {
+        "questionType" : "interview",
+        "category": "HTML",
+        "text": "Explain the importance of the HTML DOCTYPE",
+        "answer": "Explanation: DOCTYPE is an instruction to the web browser regarding what version of the markup language the page is written. The DOCTYPE declaration need to be the pretty first thing in your HTML document, before the <html> tag. Doctype declaration points to a Document Type Definition (DTD). It provides markup language rules, so a browser can interpret the content correctly." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "API",
+        "text": "What is Ajax?",
+        "answer": "Explanation: AJAX (Asynchronous JavaScript and XML) allows applications to transport data to/from a server asynchronously without refreshing the page. This means that it is likely to update parts of a web page, without reloading the entire page. For instance, your new Gmail messages arrive and are marked as new even if you have not refreshed the web page." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "Objects",
+        "text": "What is “this” keyword in Javascript?",
+        "answer": "Explanation: 'this' is used to refer to the current object in the code. In the global execution context (outside of any function), 'this' refers to the global object, whether in strict mode or not." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "Syntax",
+        "text": "What would be the result of 5+2+”3″",
+        "answer": "Explanation: Since 5 and 2 are integers (data type) they will be added together numerically. And since “3” is a string, the result would be a concatination, meaning 73." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "jQuery",
+        "text": "How is jQuery different to Javascript?",
+        "answer": "Explanation: Well, jQuery is not a programming language, but a well written JavaScript code (a framework). It is a library built with Javascript. Javascript is the core programming language. It is very popular because it abstracts away cross-browser compatibility issues and emphasises unobtrusive and callback-driven Javascript programming." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "HTML",
+        "text": "What is HTML?",
+        "answer": "Explanation: HTML stands for HyperText Markup Language. It is the most popular markup language for creating websites that can be viewed in a web browser." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "HTML",
+        "text": "What is DOM?",
+        "answer": "Explanation: DOM (Document Object Model) is an object-oriented representation of the HTML elements. All the elements (or nodes) are part of window.document." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "API",
+        "text": "What are Cookies in Javascript?",
+        "answer": "Explanation: A Cookie is a variable that is stored on a client's/visitors machine. Using Cookies, the servers can identify the client and the client's transactions." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "Syntax",
+        "text": "What is NaN in Javascript?",
+        "answer": "Explanation: NaN is a short form of Not a Number. When a string or something else is being converted into a number and that cannot be done, then we get to see NaN. A strange thing about NaN is that it is not equal to anything including itself." 
+    },
+    {
+        "questionType" : "interview",
+        "category": "Methods",
+        "text": "When do we use JSON.stringify()?",
+        "answer": "Explanation: The JSON.stringify() method is used to convert a Javascript data to a string." 
+    }
+    
+    ]

@@ -10,7 +10,8 @@ const questionSchema = new Schema({
     type: String
   },
   category: {
-    type: String
+    type: String,
+    required: true
   },
   scores: {
     type: Array
@@ -21,7 +22,10 @@ const questionSchema = new Schema({
   runTime: {
     type: Array
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> form-submit
   tests: {
     type: Array,
     required: true

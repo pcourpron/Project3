@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const Question = require("../models/Question");
 var db = require("../models");
+const questions = require( "../questions.json");
+
 
 
 router.get("/api/allQuestions", function(req, res){
@@ -24,6 +25,14 @@ router.post("/api/createQuestion", function(req, res){
   });
 });
 
+router.get("/api/importQuestions", function(req,res){
+  questions.forEach(element=> {
+    db.Question.create(element).then(function(data){
+      res.json(data);
+    });
+  });
+  
+});
 
 router.put("/api/userQuestionScores/:id", function(req, res){
   db.Question.findByIdAndUpdate(
