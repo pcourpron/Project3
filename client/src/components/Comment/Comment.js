@@ -7,32 +7,50 @@ class QuestionComment extends React.Component {
     };
 
     state = {
-        comments: []
+        comments: [],
+        run_Time: []
     }
 
 
     componentDidMount = () => {
         axios.get(`/getComments/${this.props.selectedQuestion._id}`).then((response) => {
-            console.log(response)
+            let newTime = response.data.runTime.sort((a, b) => a-b);
             this.setState({ comments: response.data.comments })
-        })
+            this.setState({ run_Time: newTime})
     }
+    )}
 
 
     render() {
+   
         return (
-            <div>
+            <div className='conatainer' style = {{marginTop:'100px'}}>
                 <div className='row justify-content-center'>
                     <div className='col-md-6 d-flex justify-content-center'>
-                       <div style={{width:'100%'}} ><h3 >{this.props.selectedQuestion.category}</h3></div>
-                        <div><h3>{this.props.selectedQuestion.text}</h3></div>
+                       <div style={{width:'100%'}} className='d-flex justify-content-center'><h3 >{this.props.selectedQuestion.category}</h3></div>
+                        
                     </div>
                 </div>
+                <div className='row justify-content-center'>
+                
 
+                <div className='col-md-8'>
+                <ul>
+
+                { this.state.runTime === [] ? null : this.state.run_Time.map((element,index) => (
+                    <li>
+                       <span style={this.props.runTime === element? {fontWeight:'bold'}:null}>{`${index + 1}. ${ element}ms`}</span> 
+                    </li>
+                ))}
+
+                </ul>
+                </div>
+                </div>
+                <div className='row'>
+                <div className='col-md-4'>
                 {this.state.comments.map((element,index) => {
-                    console.log(element)
                     return (
-                        <div className='row' style={{ width: '85%' }}>
+                       
                             <div class="card">
                                 <div class="card-header" style={{color:'white'}}>
                                     {`Comment ${index+1}`}
@@ -42,8 +60,10 @@ class QuestionComment extends React.Component {
                                 </div>
                             </div>
 
-                        </div>)
+                        )
                 })}
+                </div>
+                </div>
             </div>
         );
     };

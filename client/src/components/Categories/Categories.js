@@ -1,41 +1,53 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Categories = (props) => {
 
 
     return (
-        <div>
-            
-        <div className="row" style={{ height: '200px' }}>
-            <div className='col-md-6'>
-            <div className= 'row justify-content-center' style={{width:'100%'}}>
-            <h2 style={{color:'black'}}>Categories</h2>
-            </div>
-            <div className= 'row justify-content-center' style={{width:'100%'}}>
-                    {props.categories.map((element) => {
-                        return (<button className='btn btn-primary' style={{ width: '100%' }} onClick={() => { props.categoryClick(element) }}>{element}</button>)
-                    })}
-        
+        <div className ='container' style={{marginTop:'100px'}}>
+            <div className="row" style={{ height: '200px' }}>
+                <div className='col-md-6 shadow' style={{border: '1px solid grey',borderRadius: '10px', padding: '5px'}}>
+                    <div className='row justify-content-center' style={{ width: '100%' }}>
+                        <h2 style={{ color: 'black', width:'90%', borderBottom:'1px solid grey', textAlign:"center" }}>Categories</h2>
+                    </div>
+                    <div className='row justify-content-center' style={{ width: '100%' }}>
+                        {props.categories.map((element) => {
+                            return (
+                            <div className='row shadow justify-content-center' 
+                            style={{ width: '100%', borderRadius: '5px' }} 
+                            onClick={() => { props.categoryClick(element) }}>
+                            <span>{element}</span>
+                            
+                            </div>)
+                        })}
+
+                    </div>
                 </div>
-            </div>
-            <div className='col-md-6'>
-                <div className= 'row justify-content-center' style={{width:'100%'}}>
-                    <h2 style={{color:'black'}}>Questions</h2>
+                <div className='col-md-6' style={{border: '1px solid grey',borderRadius: '10px', padding: '5px'}}>
+                    <div className='row justify-content-center' style={{ width: '100%' }}>
+                        <h2 style={{ color: 'black',borderBottom:'1px solid grey', width:'90%', textAlign:"center" }}>Questions</h2>
+                    </div>
+                    {console.log(props)}
+                    {props.selectedCategory === '' ? <div className='d-flex justify-content-center'><span>Select A Category!</span></div> :
+                        props.questions.filter((element) => (element.category === props.selectedCategory)).map(element => {
+
+                            return (
+                            <Link to='/Question' style={{ textDecoration: 'none' }}>
+                            <div className='row justify-content-center shadow' onClick={() => { props.selectQuestion(element) }}
+                            style ={{borderRadius:'5px'}}>
+                               <div style={{color:'black'}}>{element.text}</div> 
+                            
+                            </div>
+                            </Link>)
+                        })
+                    }
+
                 </div>
-                {console.log(props)}
-                { props.selectedCategory=== '' ? <div className='d-flex justify-content-center'><span>Select A Category!</span></div> :
-                    props.questions.filter((element) => (element.category === props.selectedCategory)).map(element=>{
-                    
-                    return(<Link to ='/Question'><div onClick = {()=>{props.selectQuestion(element)}}>{element.text}</div></Link>)
-                })
-                }
 
             </div>
-
         </div>
-        </div>
-        )
+    )
 
 
 }

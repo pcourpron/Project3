@@ -50,4 +50,16 @@ router.get('/getComments/:id',function(req,res){
   })
 })
 
+router.put('/addRunTime/:id',function(req,res){
+  db.Question.findByIdAndUpdate(
+    req.params.id
+  ,
+    {$push:  {runTime: req.body.runTime}}
+  )
+    .then(function (data){
+    res.json(data);
+    })
+  
+})
+
 module.exports = router;

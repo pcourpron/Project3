@@ -21,9 +21,7 @@ const questionSchema = new Schema({
   runTime: {
     type: Array
   },
-  bigO: {
-    type: Array
-  },
+
   tests: {
     type: Array,
     required: true

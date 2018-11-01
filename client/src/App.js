@@ -11,6 +11,7 @@ import Categories from './components/Categories/Categories'
 import Admin from "./components/Admin/Admin"
 import axios from 'axios'
 import QuestionComment from "./components/Comment/index.js";
+import Navbar from './components/Navbar/Navbar'
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +20,8 @@ class App extends React.Component {
     this.getQuestions = this.getQuestions.bind(this)
     this.categoryClick = this.categoryClick.bind(this)
     this.selectedQuestion = this.selectedQuestion.bind(this)
+    this.changeRunTime = this.changeRunTime.bind(this)
+
 
 
   }
@@ -31,7 +34,8 @@ class App extends React.Component {
     userCode: ``,
     codeResponse: {},
     categories: [],
-    selectedQuestion: ''
+    selectedQuestion: '', 
+    runTime : ''
   }
 
   getQuestions = (questionType) => {
@@ -69,6 +73,12 @@ class App extends React.Component {
 
   }
 
+  changeRunTime = (runTime)=>{
+    this.setState({runTime: runTime},function(){
+      console.log(this.state.runTime)
+    })
+  }
+
 
 
 
@@ -78,36 +88,36 @@ class App extends React.Component {
   }
 
 
-
   render() {
     return (
       <Router>
-        <div className="container">
+        <div>
+          <Navbar/>
           {/* <Header/> */}
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Userlogin" component={Userlogin} />
           <Route exact path='/Comment'  
-          
-          render = {()=>
-            <QuestionComment    questionType={this.state.questionType}
-            questions={this.state.questions}
-            categories={this.state.categories}
-            selectedCategory={this.state.selectedCategory}
-            selectedQuestion={this.state.selectedQuestion}
-/>
+              render = {()=>
+              <QuestionComment    questionType={this.state.questionType}
+              questions={this.state.questions}
+              categories={this.state.categories}
+              selectedCategory={this.state.selectedCategory}
+              selectedQuestion={this.state.selectedQuestion}
+              runTime = {this.state.runTime}/>
           }/>
 
 
 
           <Route exact path='/QuestionType' component={Category}/>
           <Route exact path = "/Admin" component = {Admin}/>
-          <Route exact path='/Question' render={() =>
+          <Route exact path='/Question' render={({history}) =>
 
             <Question
               selectedQuestion = {this.state.selectedQuestion}
+              changeRunTime = {this.changeRunTime}
+              history = {history}
             />}>
-
           </Route>
           <Route exact path='/Categories' render={() =>
 
