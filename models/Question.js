@@ -10,7 +10,8 @@ const questionSchema = new Schema({
     type: String
   },
   category: {
-    type: String
+    type: String,
+    required: true
   },
   scores: {
     type: Array
@@ -19,9 +20,6 @@ const questionSchema = new Schema({
     type: Array
   },
   runTime: {
-    type: Array
-  },
-  bigO: {
     type: Array
   },
   tests: {

@@ -93,7 +93,7 @@ class Question extends Component {
                                             onChange= {this.handleChange}
                                             name="userCode"
                                             editorProps={{ $blockScrolling: true }}
-                                            value = {this.state.code}
+                                            value = {`[2,3,4,5]`}
                                    
                                         />
 
@@ -105,7 +105,6 @@ class Question extends Component {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         )

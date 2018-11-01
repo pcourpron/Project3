@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import { isThisMonth } from 'date-fns';
+
 
 
 class Admin extends React.Component {
@@ -10,18 +10,56 @@ class Admin extends React.Component {
         params: null,
         questionText: "",
         category: "",
+        codingCategories: null,
+        interviewCategories: null,
         questionAnswer: "",
-        input1Par1:"",
-        input1Par2:"",
-        input2Par1:"",
-        input2Par2: "",
-        input3Par1: "",
-        input3Par2:"",
-        expected1:null,
-        expected2:null,
-        expected3:null
+        inputs: [],
+        expectedResults: []
+       
     }
 
+    componentDidMount (){
+        this.getCategories();
+        console.log(this.state.codingCategories);
+    }
+    
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(event.target.elements[0].value)
+        if(this.state.questionType === "coding"){
+
+        
+        var inputs = [event.target.elements[4].value, event.target.elements[6].value, event.target.elements[8].value] 
+        var expected = [event.target.elements[5].value, event.target.elements[7].value, event.target.elements[9].value]
+
+        var parsedInputs = []
+        
+        inputs.forEach(element => {
+            if(!(element.charAt(0).match(/[a-zA-Z]/))){
+                parsedInputs.push(JSON.parse(element))
+            }else {
+                parsedInputs.push(element)
+            }
+        });
+
+        var parsedExpected = []
+        
+        expected.forEach(element => {
+            if(!(element.charAt(0).match(/[a-zA-Z]/))){
+                parsedExpected.push(JSON.parse(element))
+            }else {
+                parsedExpected.push(element)
+            }
+        });
+
+        console.log(parsedInputs)
+        console.log(parsedExpected)
+        // this.setState({inputs: [parsedInputs]});
+        // this.setState({expectedResults: [parsedExpected]});
+        // console.log(this.state.inputs, this.state.expectedResults)
+        this.handleSubmitCoding(parsedInputs, parsedExpected);
+    }
+    }
     handleClick = (event) => {
         this.setState({ [event.target.name]: event.target.value });
 
@@ -31,52 +69,30 @@ class Admin extends React.Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
-    handleChangeInputs = (event) => {
-        var inputNum = event.target.name
-        this.setState({[inputNum]: JSON.parse(event.target.value)});
-    }
-
-    handleSubmitCodingPar1 = (event) => {
-        event.preventDefault()
+    handleSubmitCoding = (parsedInputs, parsedExpected) => {
+        // event.preventDefault()
 
         var questionObject = {
             text: this.state.questionText,
-            answer: this.state.questionAnswer,
             questionType: this.state.questionType,
             category: this.state.category,
             tests: [
-                {input:[this.state.input1Par1],
-                expected:this.state.expected1},
-                {input:[this.state.input2Par1],
-                expected:this.state.expected2},
-                {input:[this.state.input3Par1],
-                expected:this.state.expected3}]
+                {input:parsedInputs[0],
+                expected:parsedExpected[0]},
+                {input:parsedInputs[1],
+                expected:parsedExpected[1]},
+                {input:parsedInputs[2],
+                expected:parsedExpected[2]}]
         }
+        
         Axios.post("/api/createQuestion", questionObject).then((response)=> {
             console.log(response)
-        });
+        }).catch((err) => {
+            console.log(err)
+        })
     };
 
-    handleSubmitCodingPar2 = (event) => {
-        event.preventDefault()
 
-        var questionObject = {
-            text: this.state.questionText,
-            questionType: this.state.questionType,
-            category: this.state.category,
-            tests: [
-                {input: [this.state.input1Par1, this.state.input1Par2], 
-                expected: this.state.expected1}, 
-                {input: [this.state.input2Par1, this.state.input2Par2], 
-                expected: this.state.expected2}, 
-                {input: [this.state.input3Par1, this.state.input3Par2], 
-                expected: this.state.expected3}
-            ]
-        }
-        Axios.post("/api/createQuestion", questionObject).then((response)=> {
-            console.log(response)
-        });
-    }
 
     handleSubmitInterview = (event) => {
         event.preventDefault()
@@ -89,10 +105,12 @@ class Admin extends React.Component {
         }
         Axios.post("/api/createQuestion", questionObject).then((response)=> {
             console.log(response)
-        })
+        });
     }
     renderQuestionOptions = () => {
+        
         if (this.state.questionType === "interview") {
+            
             return (
                 <div class="form-group">
                     <label for="question-answer">Question Answer</label>
@@ -106,41 +124,7 @@ class Admin extends React.Component {
                 </div>
             )
         } else if (this.state.questionType === "coding") {
-            return (
-                <div>
-                    Number of Parameters
-                <div class="form-check">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="params"
-                            id="param1"
-                            value="1"
-                            onClick={this.handleClick} />
-                        <label class="form-check-label" for="param1">
-                            1
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="params"
-                            id="param2"
-                            value="2"
-                            onClick={this.handleClick} />
-                        <label class="form-check-label" for="param2">
-                            2
-                        </label>
-                    </div>
-                    {this.renderTestOptions()}
-                </div>
-            )
-        }
-    }
-
-    renderTestOptions = () => {
-        if (this.state.params === "1") {
+            
             return (
                 <div class="form-row">
                     <label for="test1" class="col-sm-2 col-form-label">Test 1</label>
@@ -150,9 +134,7 @@ class Admin extends React.Component {
                         type="text" 
                         class="form-control" 
                         id="input"
-                        name = "input1Par1"
-                        onChange = {this.handleChangeInputs}
-                        value = {this.state.input1Par1} />
+                        name = "input1Par1"/>
                     </div>
                     <div class="form-group col-md-5">
                         <label for="expected">Expected Output</label>
@@ -160,8 +142,7 @@ class Admin extends React.Component {
                         class="form-control" 
                         id="expected" 
                         name = "expected1"
-                        onChange = {this.handleChangeInputs}
-                        value = {this.state.expected1}/>
+                        />
                     </div>
                     <label for="test1" class="col-sm-2 col-form-label">Test 2</label>
                     <div class="form-group col-md-5">
@@ -171,8 +152,7 @@ class Admin extends React.Component {
                         class="form-control" 
                         id="input" 
                         name = "input2Par1"
-                        onChange = {this.handleChangeInputs}
-                        value = {this.state.input2Par1}/>
+                        />
                     </div>
                     <div class="form-group col-md-5">
                         <label for="expected">Expected Output</label>
@@ -180,8 +160,7 @@ class Admin extends React.Component {
                         class="form-control" 
                         id="expected"
                         name = "expected2"
-                        onChange = {this.handleChangeInputs}
-                        value = {this.state.expected2} />
+                        />
                     </div>
                     <label for="test1" class="col-sm-2 col-form-label">Test 3</label>
                     <div class="form-group col-md-5">
@@ -191,8 +170,7 @@ class Admin extends React.Component {
                         class="form-control" 
                         id="input"
                         name = "input3Par1"
-                        onChange = {this.handleChangeInputs}
-                        value = {this.state.input3Par1} />
+                        />
                     </div>
                     <div class="form-group col-md-5">
                         <label for="expected">Expected Output</label>
@@ -201,121 +179,83 @@ class Admin extends React.Component {
                         class="form-control" 
                         id="expected" 
                         name = "expected3"
-                        onChange = {this.handleChangeInputs}
-                        value = {this.state.expected3}/>
+                        />
                     </div>
-                    <button onClick = {this.handleSubmitCodingPar1}>Submit</button>
+                    <button >Submit</button>
                 </div>
-            )
-        } else if (this.state.params === "2") {
-            return (
-                <div class="form-row">
-                <label for="test1" class="col-sm-2 col-form-label">Test 1</label>
-                <div class="form-group col-md-3">
-                    <label for="input">Input 1</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="input"
-                    name = "input1Par1"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.input1Par1}/>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="input">Input 2</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="input" 
-                    name = "input1Par2"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.input1Par2}
-                    />
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="expected">Expected Output</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="expected" 
-                    name = "expected1"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.expected1}/>
-                </div>
-                <label for="test1" class="col-sm-2 col-form-label">Test 2</label>
-                <div class="form-group col-md-3">
-                    <label for="input">Input 1</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="input" 
-                    name = "input2Par1"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.input2Par1}/>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="input">Input 2</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="input" 
-                    name = "input2Par2"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.input2Par2}/>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="expected">Expected Output</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="expected" 
-                    name = "expected2"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.expected2}/>
-                </div>
-                <label for="test1" class="col-sm-2 col-form-label">Test 3</label>
-                <div class="form-group col-md-3">
-                    <label for="input">Input 1</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="input" 
-                    name = "input3Par1"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.input3Par1}/>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="input">Input 2</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="input"
-                    name = "input3Par2"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.input3Par2} />
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="expected">Expected Output</label>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    id="expected" 
-                    name = "expected3"
-                    onChange = {this.handleChangeInputs}
-                    value = {this.state.expected3}/>
-                </div>
-                <button onClick = {this.handleSubmitCodingPar2}>Submit</button>
-            </div>
-            
+                
             )
         }
+    }
+
+    getCategories = () => {
+        Axios.get("api/allQuestions").then((response)=> {
+            console.log(response.data)
+            var codingCategories = []
+            var interviewCategories = []
+            response.data.forEach(item => {
+                if(item.questionType === "coding"){
+                    if(codingCategories.indexOf(item.category) === -1){
+                        codingCategories.push(item.category);
+                    }
+                    
+                }else {
+                    if(interviewCategories.indexOf(item.category) === -1){
+                        interviewCategories.push(item.category);
+                    }
+                }
+            });
+            console.log(codingCategories);
+            
+                this.setState({codingCategories: codingCategories});            
+                this.setState({interviewCategories: interviewCategories});
+                console.log(this.state.codingCategories)
+            
+        });
+    }
+
+    renderCategories = () => {
+        console.log(this.state.codingCategories)
+        console.log(this.state.interviewCategories)
+        console.log(this.state.questionType)
+        if(this.state.questionType === "coding"){
+        return (
+            <div>
+                <p>Current Categories</p>
+                {this.state.codingCategories.map(element => (
+        
+                    <button 
+                    onClick = {this.handleCategoryClick}
+                    >{element}</button>
+                ))}
+            </div>
+        )
+        }if(this.state.questionType === "interview"){
+            return (
+                <div>
+                    <p>Current Categories</p>
+                    {this.state.interviewCategories.map(element => (
+                        <button 
+                        onClick = {this.handleCategoryClick}
+                        >{element}</button>
+                    ))}
+                </div>
+            )
+        }
+    }
+    
+    handleCategoryClick = (event) => {
+        event.preventDefault();
+        console.dir(event.target.textContent);
+        this.setState({category: event.target.textContent})
     }
 
     render() {
         return (
             <div className="row" >
+            <h1>Create a New Question</h1>
                 <div className="col-md-12">
-                    <form>
+                    <form onSubmit = {this.handleSubmit}>
                         <div class="form-check">
                             <input
                                 className="form-check-input"
@@ -340,6 +280,9 @@ class Admin extends React.Component {
                                 Coding
                         </label>
                         </div>
+
+                        {this.renderCategories()}
+
                         <div class="form-group">
                             <label for="category">Category</label>
                             <input 
@@ -358,6 +301,7 @@ class Admin extends React.Component {
                             onChange = {this.handleChange}
                             value = {this.state.questionText}/>
                         </div>
+                        
                         {this.renderQuestionOptions()}
                     </form>
 
