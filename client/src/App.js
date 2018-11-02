@@ -8,7 +8,7 @@ import Userlogin from "./components/Userlogin/Userlogin.js";
 import Question from "./components/Question/Question"
 import Category from "./components/Category/Category"
 import Categories from './components/Categories/Categories'
-import Admin from "./components/Admin/Admin"
+import AdminCreateQuestion from "./components/Admin/AdminCreateQuestion"
 import axios from 'axios'
 import QuestionComment from "./components/Comment/index.js";
 import Navbar from './components/Navbar/Navbar'
@@ -110,7 +110,7 @@ class App extends React.Component {
 
 
           <Route exact path='/QuestionType' component={Category}/>
-          <Route exact path = "/Admin" component = {Admin}/>
+          <Route exact path = "/AdminCreateQuestion" component = {AdminCreateQuestion}/>
           <Route exact path='/Question' render={({history}) =>
 
             <Question
