@@ -11,7 +11,8 @@ import Categories from './components/Categories/Categories'
 import Admin from "./components/Admin/Admin"
 import axios from 'axios'
 import QuestionComment from "./components/Comment/index.js";
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './components/Navbar/Navbar';
+import Interview from './components/Interview/interview';
 
 class App extends React.Component {
   constructor(props) {
@@ -94,6 +95,7 @@ class App extends React.Component {
         <div>
           <Navbar/>
           {/* <Header/> */}
+          <Route exact path="/Interview" component={Interview} />
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Userlogin" component={Userlogin} />
