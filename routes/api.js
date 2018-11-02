@@ -1,6 +1,4 @@
 const router = require("express").Router();
-const Article = require("../models/article");
-
 var db = require("../models");
 const questions = require( "../questions.json");
 
@@ -12,20 +10,6 @@ router.get("/api/allQuestions", function(req, res){
   });
 });
 
-router.get("/saved", function(req, res) {
-  // as long as req.body matches what the model expects, this should insert into the database
-  Article.find({}, function(error, found) {
-    // Log any errors
-    if (error) {
-      console.log(error);
-    }
-    else {
-      // Otherwise, send json of the notes back to user
-      // This will fire off the success function of the ajax request
-      res.json(found);
-    }
-  });
-});
 
 router.get("/api/oneQuestion/:id", function(req, res){
   db.Question.findOne({ _id: req.params.id }).then(function (data){
@@ -42,6 +26,7 @@ router.post("/api/createQuestion", function(req, res){
 });
 
 router.get("/api/importQuestions", function(req,res){
+  console.log('hit')
   questions.forEach(element=> {
     db.Question.create(element).then(function(data){
       res.json(data);
@@ -49,6 +34,10 @@ router.get("/api/importQuestions", function(req,res){
   });
   
 });
+
+router.get('/test',function(req,res){
+  res.send(true)
+})
 
 router.put("/api/userQuestionScores/:id", function(req, res){
   db.Question.findByIdAndUpdate(
@@ -86,5 +75,99 @@ router.put('/addRunTime/:id',function(req,res){
     })
   
 })
+
+
+router.post("/submit", (req, res) => {
+  var userData = {
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password,
+    passwordConf: req.body.passwordConf,
+  }
+
+  db.User.create(userData, function (error, user) {
+    console.log(error);
+    if (error) {
+      return res.status(404).json(error);
+    } else {
+      req.session.userId = user._id;
+      res.status(200).json(user);
+      console.log(req.session)
+      // return res.redirect('/profile');
+    }
+  });
+});
+
+router.post("/login", (req, res) => {
+  // console.log("hello");
+
+  if (req.body.email && req.body.password) {
+    console.log("Authenticating...");
+    db.User.authenticate(req.body.email, req.body.password, function (error, user) {
+      if (error || !user) {
+        console.log("Error & no User");
+        var err = new Error('Wrong email or password.');
+        res.status(401).send(err);
+        // return next(err);
+      } else {
+        console.log("Request email:", req.body.email);
+        db.User.findOne({
+          email: req.body.email
+        }, (err, userData) => {
+          if (!err) {
+            req.session.id = userData.id;
+            res.status(200).send(req.session.id);
+          } else {
+            console.log("Login failed...");
+            res.status(400).json(err);
+          }
+        });
+        // return res.redirect('/profile');
+      }
+    });
+  } else {
+    console.log("All fields not fulfilled...");
+    var err = new Error('All fields required.');
+    res.status(400).json(err);
+    // return next(err);
+  }  
+})
+
+// GET route after registering
+router.get('/profile', function (req, res, next) {
+  db.User.findOne({ email: req.body.email })
+      console.log(req.body)
+    .exec(function (err, user) {
+      if (err) {
+        return callback(err)
+      } else if (!user) {
+        var err = new Error('User not found.');
+        err.status = 401;
+        return callback(err);
+      }
+      bcrypt.compare(password, user.passwordConf, function (err, result) {
+        if (result === true) {
+          return callback(null, user);
+        } else {
+          return callback();
+        }
+      })
+    });
+});
+
+// GET for logout logout
+router.get('/logout', function (req, res, next) {
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function (err) {
+      if (err) {
+        return next(err);
+      } else {
+        return res.redirect('/login');
+      }
+    });
+  }
+});
+
 
 module.exports = router;
