@@ -3,9 +3,17 @@ import AceEditor from "react-ace";
 import "./Question.css";
 import { Link } from 'react-router-dom'
 import equal from "deep-strict-equal";
+<<<<<<< HEAD
 import '../../../node_modules/brace/mode/javascript'
 import '../../../node_modules/brace/theme/dracula'
 import axios from 'axios'
+=======
+
+import '../../../node_modules/brace/mode/javascript'
+import '../../../node_modules/brace/theme/dracula'
+import axios from 'axios'
+
+>>>>>>> 8d74ef335e9c2b2cb459ff0a87643344087452ae
 
 
 
@@ -90,7 +98,9 @@ class Question extends Component {
         return (
             <div className="container" style={{ marginTop: '100px' }}>
                 <div className="row">
-                    <Instructions text={this.props.selectedQuestion.text} />
+                    <Instructions 
+                    text={this.props.selectedQuestion.text} 
+                    tests={this.props.selectedQuestion.tests}/>
                     
                     <div className="col-md-8" style={{ border: ' 1px solid grey' }}>
                         <div> <h4 className='text-center' style={{ width: '100%' }}>Solution:</h4></div>
@@ -109,8 +119,6 @@ class Question extends Component {
                                             height='400px'
                                             setOptions={{ showPrintMargin: false }}
                                         />
-
-
                                     </div>
                                 </div>
                             </div>
