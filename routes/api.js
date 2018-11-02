@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Article = require("../models/article");
-var db = require("../models");
+
 
 router.post("/save", function(req, res) {
   // as long as req.body matches what the model expects, this should insert into the database
@@ -16,7 +16,7 @@ router.post("/save", function(req, res) {
 
 router.get("/saved", function(req, res) {
   // as long as req.body matches what the model expects, this should insert into the database
-  db.articles.find({}, function(error, found) {
+  Article.find({}, function(error, found) {
     // Log any errors
     if (error) {
       console.log(error);
