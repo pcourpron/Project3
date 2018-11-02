@@ -46,8 +46,8 @@ router.put("/api/userQuestionScores/:id", function(req, res){
   
 });
 
-router.get('/getAllCoding/:type',function(req,res){
-  db.Question.find({questionType: req.params.type}).then(function (data){
+router.get('/getAllQuestions',function(req,res){
+  db.Question.find({}).then(function (data){
     res.json(data);
   });
 })
@@ -70,5 +70,19 @@ router.put('/addRunTime/:id',function(req,res){
     })
   
 })
+
+router.put('/addComment/:id',function(req,res){
+  console.log(req.body)
+  db.Question.findByIdAndUpdate(
+    req.params.id
+  ,
+    {$push:  {comments: req.body}}
+  )
+    .then(function (data){
+    res.json(data);
+    })
+})
+
+
 
 module.exports = router;

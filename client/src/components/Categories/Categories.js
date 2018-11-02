@@ -6,22 +6,24 @@ const Categories = (props) => {
 
     return (
         <div className ='container' style={{marginTop:'100px'}}>
-            <div className="row" style={{ height: '200px' }}>
+            <div className="row" style={{minHeight:'300px'}}>
                 <div className='col-md-6 shadow' style={{border: '1px solid grey',borderRadius: '10px', padding: '5px'}}>
+                    <div className='row'>
                     <div className='row justify-content-center' style={{ width: '100%' }}>
-                        <h2 style={{ color: 'black', width:'90%', borderBottom:'1px solid grey', textAlign:"center" }}>Categories</h2>
+                        <h2 style={{ color: 'black', width:'80%', borderBottom:'1px solid grey', textAlign:"center" }}>Categories</h2>
                     </div>
-                    <div className='row justify-content-center' style={{ width: '100%' }}>
+                    <div className='coljustify-content-center' style={{ width: '100%' }}>
                         {props.categories.map((element) => {
                             return (
                             <div className='row shadow justify-content-center' 
-                            style={{ width: '100%', borderRadius: '5px' }} 
+                            style={{ width: '100%', borderRadius: '5px', backgroundColor:'lightblue', marginTop:'10px' }} 
                             onClick={() => { props.categoryClick(element) }}>
                             <span>{element}</span>
                             
                             </div>)
                         })}
 
+                    </div>
                     </div>
                 </div>
                 <div className='col-md-6' style={{border: '1px solid grey',borderRadius: '10px', padding: '5px'}}>
@@ -35,7 +37,7 @@ const Categories = (props) => {
                             return (
                             <Link to='/Question' style={{ textDecoration: 'none' }}>
                             <div className='row justify-content-center shadow' onClick={() => { props.selectQuestion(element) }}
-                            style ={{borderRadius:'5px'}}>
+                            style ={{borderRadius:'5px', backgroundColor:'green', marginTop:'10px'}}>
                                <div style={{color:'black'}}>{element.text}</div> 
                             
                             </div>

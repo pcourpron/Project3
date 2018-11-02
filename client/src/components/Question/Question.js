@@ -21,7 +21,6 @@ class Question extends Component {
     }
     state = {
         code: `function testFunction(input){
-    
         }`,
         result: '',
         runTime: ''
@@ -37,20 +36,18 @@ class Question extends Component {
 
                 if (!equal(testing(tests[i].input), tests[i].expected)) {
                     result = (`${tests[i].input} does not return ${tests[i].expected} but returns ${testing(tests[i].input)}`);
+                    this.setState({result:result})
                     break
                 }
-
-
-
                 if (i === tests.length - 1) {
                     result = 'You passed!'
                     this.benchmark(testing, tests[0].input)
-                    this.setState({ result: result }, function () {
-                        console.log(this.state.result)
-                    })
+                    this.setState({ result: result })
                     break
                 }
             }
+
+
         } catch (error) {
             console.log(error)
         }
@@ -70,15 +67,21 @@ class Question extends Component {
         average = average /50
         console.log(average)
         this.props.changeRunTime(average)
-        axios.put(`/addRunTime/${this.props.selectedQuestion._id}`, {runTime:average})
-        this.props.history.push('/Comment')
+
+
+        axios.put(`/addRunTime/${this.props.selectedQuestion._id}`, {runTime:average}).then(
+            ()=>{
+                this.props.history.push('/Comment')
+            }
+        )
+
+    
 
     }
 
     clearEditor = ()=>{
         this.setState({code: `function testFunction(input){
-    
-        }`})
+    }`})
     }
 
     handleChange = (event) => {
@@ -92,7 +95,9 @@ class Question extends Component {
         return (
             <div className="container" style={{ marginTop: '100px' }}>
                 <div className="row">
-                    <Instructions text={this.props.selectedQuestion.text} />
+                    <Instructions 
+                    text={this.props.selectedQuestion.text}
+                    output = {this.state.result} />
                     
                     <div className="col-md-8" style={{ border: ' 1px solid grey' }}>
                         <div> <h4 className='text-center' style={{ width: '100%' }}>Solution:</h4></div>
@@ -140,7 +145,7 @@ class Question extends Component {
                 </div >
 
             <div className='row'>
-                {this.state.result}
+            
             </div>
           
             </div >

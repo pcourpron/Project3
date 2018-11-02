@@ -22,10 +22,6 @@ const questionSchema = new Schema({
   runTime: {
     type: Array
   },
-<<<<<<< HEAD
-
-=======
->>>>>>> form-submit
   tests: {
     type: Array,
     required: true

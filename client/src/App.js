@@ -12,6 +12,8 @@ import Admin from "./components/Admin/Admin"
 import axios from 'axios'
 import QuestionComment from "./components/Comment/index.js";
 import Navbar from './components/Navbar/Navbar'
+import InterviewQuestion from './components/interviewQuestion/interviewQuestion.js'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +23,7 @@ class App extends React.Component {
     this.categoryClick = this.categoryClick.bind(this)
     this.selectedQuestion = this.selectedQuestion.bind(this)
     this.changeRunTime = this.changeRunTime.bind(this)
+    this.changeQuestionType = this.changeQuestionType.bind(this)
 
 
 
@@ -35,12 +38,13 @@ class App extends React.Component {
     codeResponse: {},
     categories: [],
     selectedQuestion: '', 
-    runTime : ''
+    runTime : '',
+    articles :[],
+    interviewQuestion: []
   }
 
   getQuestions = (questionType) => {
-    console.log(questionType)
-    axios.get(`/getAllCoding/${questionType}`).then((response) => {
+    axios.get(`/getAllQuestions`).then((response) => {
       var categoryArray = []
       response.data.forEach(element => {
         categoryArray.push(element.category)
@@ -68,7 +72,6 @@ class App extends React.Component {
   }
 
   selectedQuestion(question) {
-    console.log(question)
     this.setState({ selectedQuestion: question })
 
   }
@@ -79,12 +82,32 @@ class App extends React.Component {
     })
   }
 
+    changeQuestionType = (event)=>{
+      this.setState({questionType: event.target.value})
+    }
+
+    getArticles=()=>{
+   
+        axios.get('http://hn.algolia.com/api/v1/search?query=javascript algorithms').then((response)=>{
+          console.log(response)
+          var num = Math.floor(Math.random()*5)
+          this.setState({articles : response.data.hits.slice(num,num+5)})
+        })
+    
+     
+    }
 
 
+    logOut = ()=>{
+      this.setState({user_id:''})
+      axios.get('/logOut')
+
+    }
 
 
   componentDidMount() {
-    this.getQuestions('coding')
+    this.getQuestions()
+    this.getArticles()
   }
 
 
@@ -92,11 +115,14 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Navbar/>
+          <Navbar admin = {false}
+          name = ''/>
           {/* <Header/> */}
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Userlogin" component={Userlogin} />
+
+      
           <Route exact path='/Comment'  
               render = {()=>
               <QuestionComment    questionType={this.state.questionType}
@@ -104,23 +130,39 @@ class App extends React.Component {
               categories={this.state.categories}
               selectedCategory={this.state.selectedCategory}
               selectedQuestion={this.state.selectedQuestion}
-              runTime = {this.state.runTime}/>
+              runTime = {this.state.runTime}
+              getArticles = {this.getArticles}/>
           }/>
 
 
 
-          <Route exact path='/QuestionType' component={Category}/>
-          <Route exact path = "/Admin" component = {Admin}/>
-          <Route exact path='/Question' render={({history}) =>
+          <Route exact path='/QuestionType' render = {()=>
+              <Category    
+              questionType={this.state.questionType}
+              changeQuestionType = {this.changeQuestionType}
+              categories={this.state.categories}
+              selectedCategory={this.state.selectedCategory}
+              selectCategory = {this.categoryClick}
+              questions = {this.state.questions}
+              articles = {this.state.articles}
+              selectedQuestion = {this.selectedQuestion}
+              />}/>
 
+
+
+
+          <Route exact path = "/Admin" component = {Admin}/>
+
+
+          <Route exact path='/Question' render={({history}) =>
             <Question
               selectedQuestion = {this.state.selectedQuestion}
               changeRunTime = {this.changeRunTime}
               history = {history}
-            />}>
-          </Route>
-          <Route exact path='/Categories' render={() =>
+            />}> </Route>
 
+
+          <Route exact path='/Categories' render={() =>
             <Categories
               questionType={this.state.questionType}
               getQuestions={this.getQuestions}
@@ -132,6 +174,13 @@ class App extends React.Component {
             />}>
 
           </Route>
+
+
+          <Route exact path='/interviewQuestion' render={()=>
+          <InterviewQuestion
+          
+          />}/>
+
         </div>
 
       </Router>

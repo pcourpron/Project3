@@ -1,5 +1,5 @@
 import FlashcardApp from 'react-flashcard-app';
-import React from 'React';
+import React from 'react';
 
 const options =
 {
