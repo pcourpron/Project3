@@ -7386,6 +7386,7 @@ react-dom@^16.3.2:
     prop-types "^15.6.2"
     scheduler "^0.10.0"
 
+<<<<<<< HEAD
 react-flashcard-app@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-flashcard-app/-/react-flashcard-app-1.3.1.tgz#ff55f40d845c76af0e96953cc6f8c9129a28f22e"
@@ -7402,6 +7403,14 @@ react-flashcard-app@^1.3.1:
     redux "^3.6.0"
 
 react-is@^16.3.2, react-is@^16.6.0:
+=======
+react-flippy@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-flippy/-/react-flippy-0.1.2.tgz#8055c9be3f4c530831ef2920e16f005e61d18eec"
+  integrity sha512-ldShzh+XC3ts15DOwuYl9QJQ03bn6k6QcDwUHQcuui8l47vH5B7gxpBYLg3ybtj+0li/4Zc4UUr8VwdDX7G/bQ==
+
+react-is@^16.3.2:
+>>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.0.tgz#456645144581a6e99f6816ae2bd24ee94bdd0c01"
   integrity sha512-q8U7k0Fi7oxF1HvQgyBjPwDXeMplEsArnKt2iYhuIF86+GBbgLHdAmokL3XUFjTd7Q363OSNG55FOGUdONVn1g==

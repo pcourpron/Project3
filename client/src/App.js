@@ -1,19 +1,24 @@
 
-import React from "react";
+import React, {Component} from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Landingpage from "./components/Landingpage/Landingpage.js";
 import Signup from "./components/Signup/Signup.js";
-import Userlogin from "./components/Userlogin/Userlogin.js";
+import Login from "./components/Login/Login.js";
 //import Product from "./components/pages/Product.js";
 import Question from "./components/Question/Question"
 import Category from "./components/Category/Category"
 import Categories from './components/Categories/Categories'
-import Admin from "./components/Admin/Admin"
+import AdminCreateQuestion from "./components/Admin/AdminCreateQuestion"
 import axios from 'axios'
 import QuestionComment from "./components/Comment/index.js";
+<<<<<<< HEAD
 import Navbar from './components/Navbar/Navbar'
 import InterviewQuestion from './components/interviewQuestion/interviewQuestion.js'
 
+=======
+import Navbar from './components/Navbar/Navbar';
+import Interview from './components/Interview/interview';
+>>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
 
 class App extends React.Component {
   constructor(props) {
@@ -39,8 +44,12 @@ class App extends React.Component {
     categories: [],
     selectedQuestion: '', 
     runTime : '',
+<<<<<<< HEAD
     articles :[],
     interviewQuestion: []
+=======
+    loggedIn: false
+>>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
   }
 
   getQuestions = (questionType) => {
@@ -75,6 +84,9 @@ class App extends React.Component {
     this.setState({ selectedQuestion: question })
 
   }
+  handleToggleLogin = () => {
+         this.setState((prevState) => ({loggedIn: !prevState.loggedIn}));
+       };
 
   changeRunTime = (runTime)=>{
     this.setState({runTime: runTime},function(){
@@ -118,11 +130,15 @@ class App extends React.Component {
           <Navbar admin = {false}
           name = ''/>
           {/* <Header/> */}
+          <Route exact path="/Interview" component={Interview} />
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/Signup" component={Signup} />
+<<<<<<< HEAD
           <Route exact path="/Userlogin" component={Userlogin} />
 
       
+=======
+>>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
           <Route exact path='/Comment'  
               render = {()=>
               <QuestionComment    questionType={this.state.questionType}
@@ -136,6 +152,7 @@ class App extends React.Component {
 
 
 
+<<<<<<< HEAD
           <Route exact path='/QuestionType' render = {()=>
               <Category    
               questionType={this.state.questionType}
@@ -152,6 +169,11 @@ class App extends React.Component {
 
 
           <Route exact path = "/Admin" component = {Admin}/>
+=======
+          <Route exact path='/QuestionType' component={Category}/>
+          <Route exact path = "/AdminCreateQuestion" component = {AdminCreateQuestion}/>
+          <Route exact path='/Question' render={({history}) =>
+>>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
 
 
           <Route exact path='/Question' render={({history}) =>
@@ -174,6 +196,7 @@ class App extends React.Component {
             />}>
 
           </Route>
+<<<<<<< HEAD
 
 
           <Route exact path='/interviewQuestion' render={()=>
@@ -181,6 +204,9 @@ class App extends React.Component {
           
           />}/>
 
+=======
+            <Route exact path="/Login" component={Login} />
+>>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
         </div>
 
       </Router>

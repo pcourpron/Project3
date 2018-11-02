@@ -22,7 +22,7 @@ const Navbar = (props)=>{
       {props.admin === true? <li><Link to='/Login'><a className="nav-link" >Admin</a></Link> </li>: null}
      
 
-     {props.name !== ''?<li> <a className="nav-link" >Sign Out</a></li>: null}
+     {props.name !== ''?<li> <a className="nav-link" onClick={this}>Sign Out</a></li>: null}
       
 
     </ul>

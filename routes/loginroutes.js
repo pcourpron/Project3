@@ -1,95 +1,7 @@
-const router = require("express").Router();
-var db = require("../models");
-const questions = require( "../questions.json");
+var express = require('express');
+var router = express.Router();
+var User = require('../models/user');
 
-
-
-router.get("/api/allQuestions", function(req, res){
-  db.Question.find({}).then(function (data){
-    res.json(data);
-  });
-});
-
-
-router.get("/api/oneQuestion/:id", function(req, res){
-  db.Question.findOne({ _id: req.params.id }).then(function (data){
-    res.json(data);
-  });
-});
-
-router.post("/api/createQuestion", function(req, res){
-  db.Question.create(req.body).then(function (data){
-    res.json(data);
-  }).catch(function(err){
-    res.send(err)
-  });
-});
-
-router.get("/api/importQuestions", function(req,res){
-  console.log('hit')
-  questions.forEach(element=> {
-    db.Question.create(element).then(function(data){
-      res.json(data);
-    });
-  });
-  
-});
-
-router.get('/test',function(req,res){
-  res.send(true)
-})
-
-router.put("/api/userQuestionScores/:id", function(req, res){
-  db.Question.findByIdAndUpdate(
-    req.params.id
-  ,
-    {$push: {scores: req.body.scores, codeTime: req.body.codeTime, runTime: req.body.runTime, bigO: req.body.bigO}}
-  )
-    .then(function (data){
-    res.json(data);
-    })
-  
-});
-
-router.get('/getAllQuestions',function(req,res){
-  db.Question.find({}).then(function (data){
-    res.json(data);
-  });
-})
-
-
-router.get('/getComments/:id',function(req,res){
-  db.Question.findById({_id:req.params.id}).then(function(data){
-    res.json(data)
-  })
-})
-
-router.put('/addRunTime/:id',function(req,res){
-  db.Question.findByIdAndUpdate(
-    req.params.id
-  ,
-    {$push:  {runTime: req.body.runTime}}
-  )
-    .then(function (data){
-    res.json(data);
-    })
-  
-})
-
-<<<<<<< HEAD
-router.put('/addComment/:id',function(req,res){
-  console.log(req.body)
-  db.Question.findByIdAndUpdate(
-    req.params.id
-  ,
-    {$push:  {comments: req.body}}
-  )
-    .then(function (data){
-    res.json(data);
-    })
-})
-
-=======
 
 router.post("/submit", (req, res) => {
   var userData = {
@@ -99,14 +11,13 @@ router.post("/submit", (req, res) => {
     passwordConf: req.body.passwordConf,
   }
 
-  db.User.create(userData, function (error, user) {
+  User.create(userData, function (error, user) {
     console.log(error);
     if (error) {
       return res.status(404).json(error);
     } else {
       req.session.userId = user._id;
       res.status(200).json(user);
-      console.log(req.session)
       // return res.redirect('/profile');
     }
   });
@@ -117,7 +28,7 @@ router.post("/login", (req, res) => {
 
   if (req.body.email && req.body.password) {
     console.log("Authenticating...");
-    db.User.authenticate(req.body.email, req.body.password, function (error, user) {
+    User.authenticate(req.body.email, req.body.password, function (error, user) {
       if (error || !user) {
         console.log("Error & no User");
         var err = new Error('Wrong email or password.');
@@ -125,7 +36,7 @@ router.post("/login", (req, res) => {
         // return next(err);
       } else {
         console.log("Request email:", req.body.email);
-        db.User.findOne({
+        User.findOne({
           email: req.body.email
         }, (err, userData) => {
           if (!err) {
@@ -149,7 +60,7 @@ router.post("/login", (req, res) => {
 
 // GET route after registering
 router.get('/profile', function (req, res, next) {
-  db.User.findOne({ email: req.body.email })
+  User.findOne({ email: req.body.email })
       console.log(req.body)
     .exec(function (err, user) {
       if (err) {
@@ -182,7 +93,5 @@ router.get('/logout', function (req, res, next) {
     });
   }
 });
->>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
-
 
 module.exports = router;
