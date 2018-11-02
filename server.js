@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/loginTryout');
+// mongoose.connect('mongodb://localhost/loginTryout');
 var db = mongoose.connection;
 
 //handle mongo error
@@ -55,7 +55,12 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
-//mongoose.Promise = global.Promise;mongoose.connect("mongodb://localhost:27017/node-demo");
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codingQuestions");
+
+// app.get('/', function(req, res){
+//   res.send('Hello World');
+// });
 
 
 app.listen(PORT, () => {

@@ -17,19 +17,7 @@ export default class Signup extends Component {
       isLoading: false,
       email: "",
       password: "",
-      passwordConf: "",
-      // confirmationCode: "",
-      // newUser: null
-      
-      // state = {
-      //   email: "",
-      //   username: "",
-      //   password: "",
-      //   passwordConf: ""
-      // }
-      
-
-      
+      passwordConf: ""
     };
   }
 
@@ -41,16 +29,6 @@ export default class Signup extends Component {
     );
   }
 
-  // validateConfirmationForm() {
-  //   return this.state.confirmationCode.length > 0;
-  // }
-
-  // handleChange = event => {
-  //   this.setState({
-  //     [event.target.id]: event.target.value
-  //   });
-  // }
-  
   handleChange = event => {
     this.setState({
         // [key]: e.target.value
@@ -60,15 +38,6 @@ export default class Signup extends Component {
     })
   }
 
-  // handleSubmit = async event => {
-  //   event.preventDefault();
-
-  //   this.setState({ isLoading: true });
-
-  //   this.setState({ newUser: "test" });
-
-  //   this.setState({ isLoading: false });
-  // }
   handleSubmit = (e) => {
       e.preventDefault();
       if (!this.state.password === this.state.passwordConf){
@@ -95,33 +64,7 @@ export default class Signup extends Component {
 
     this.setState({ isLoading: true });
   }
-
-  // renderConfirmationForm() {
-  //   return (
-  //     <form onSubmit={this.handleConfirmationSubmit}>
-  //       <FormGroup controlId="confirmationCode" bsSize="large">
-  //         <ControlLabel><h1>Confirmation Code</h1></ControlLabel>
-  //         <FormControl
-  //           autoFocus
-  //           type="tel"
-  //           value={this.state.confirmationCode}
-  //           onChange={(event)=>{this.handleChange(event)}}
-  //         />
-  //         <HelpBlock><h6>Please check your email for the code.</h6></HelpBlock>
-  //       </FormGroup>
-  //       <LoadingButton
-  //         block
-  //         bsSize="large"
-  //         disabled={!this.validateConfirmationForm()}
-  //         type="submit"
-  //         isLoading={this.state.isLoading}
-  //         text="Verify"
-  //         loadingText="Verifying…"
-  //       />
-  //     </form>
-  //   );
-  // }
-
+  
   renderForm() {
     return (
       <form onSubmit={this.handleSubmit}>

@@ -1,8 +1,9 @@
-.container-landingpage {
+#landing-page {
     background-image: url("/image/abstract.jpg");
     background-position: center;
-    position: fixed;
+    background-repeat: no-repeat;
     width: 100%;
+<<<<<<< HEAD
     height: 100%;
     left: 0;
     top: 0;
@@ -85,24 +86,14 @@ h5 {
         visibility: visible;
         transition: .5s ease;
         display: block;
+=======
+    height: 100vh;
+  
 }
 
-.text{
-    background-image: url("/image/backroundHover.png");
-    /* background-color: white; */
-    width: 75%;
-    height: 200px;
-    padding: 10px;
-    font-size: 30px;
-    font-family: Courier;
+#landing-page-text{
+    color: 'white';
+    text-align:"center" 
+>>>>>>> b3beda16f8ab825290ecfb9407e2ecf8149244bb
 }
 
-p {
-    color: white;
-}
-
-.welcome {
-    padding-top: 2px;
-}
-    
-    

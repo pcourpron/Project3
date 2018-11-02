@@ -3,9 +3,6 @@ var router = express.Router();
 var User = require('../models/user');
 
 
-//POST route for updating data
-// router.post('/login', function (req, res, next) {
-// console.log("hello");
 router.post("/submit", (req, res) => {
   var userData = {
     email: req.body.email,
@@ -27,14 +24,7 @@ router.post("/submit", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  console.log("hello");
-
-  // confirm that user typed same password twice
-  // if (req.body.password !== req.body.passwordConf) {
-  //   var err = new Error('Passwords do not match.');
-  //   res.status(400).json(err);
-  //   // return next(err);
-  // }
+  // console.log("hello");
 
   if (req.body.email && req.body.password) {
     console.log("Authenticating...");
@@ -65,16 +55,7 @@ router.post("/login", (req, res) => {
     var err = new Error('All fields required.');
     res.status(400).json(err);
     // return next(err);
-  }
-  
-  // var myData = new User(req.body);
-  // myData.save()
-  // .then(item => {
-  // res.send("item saved to database");
-  // })
-  // .catch(err => {
-  // res.status(400).send("unable to save to database");
-  // });
+  }  
 })
 
 // GET route after registering
@@ -97,20 +78,6 @@ router.get('/profile', function (req, res, next) {
         }
       })
     });
-  // User.findById(req.session.userId)
-  //   .exec(function (error, user) {
-  //     if (error) {
-  //       return next(error);
-  //     } else {
-  //       if (user === null) {
-  //         var err = new Error('Not authorized! Go back!');
-  //         err.status = 400;
-  //         return next(err);
-  //       } else {
-  //         return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
-  //       }
-  //     }
-  //   });
 });
 
 // GET for logout logout
