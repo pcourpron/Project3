@@ -3,17 +3,11 @@ import AceEditor from "react-ace";
 import "./Question.css";
 import { Link } from 'react-router-dom'
 import equal from "deep-strict-equal";
-<<<<<<< HEAD
-import '../../../node_modules/brace/mode/javascript'
-import '../../../node_modules/brace/theme/dracula'
-import axios from 'axios'
-=======
 
 import '../../../node_modules/brace/mode/javascript'
 import '../../../node_modules/brace/theme/dracula'
 import axios from 'axios'
 
->>>>>>> 8d74ef335e9c2b2cb459ff0a87643344087452ae
 
 
 
