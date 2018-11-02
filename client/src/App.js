@@ -14,26 +14,6 @@ import QuestionComment from "./components/Comment/index.js";
 import Navbar from './components/Navbar/Navbar';
 import Interview from './components/Interview/interview';
 
-// class App extends Component {
-//   state = {
-//     loggedIn: false
-//   };
-//   handleToggleLogin = () => {
-//     this.setState((prevState) => ({loggedIn: !prevState.loggedIn}));
-//   };
-//   render() {
-//     return (
-//       <Router>
-//         <div className="container">
-//           {/* <Header/> */}
-//           <Route exact path="/" component={Landingpage} />
-//           <Route exact path="/Signup" component={Signup} />
-//           <Route exact path="/Login" component={Login} />
-//         </div>
-//       </Router>
-//     );
-//   }
-// };
 class App extends React.Component {
   constructor(props) {
     super(props)
