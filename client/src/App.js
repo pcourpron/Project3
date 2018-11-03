@@ -11,14 +11,9 @@ import Categories from './components/Categories/Categories'
 import AdminCreateQuestion from "./components/Admin/AdminCreateQuestion"
 import axios from 'axios'
 import QuestionComment from "./components/Comment/index.js";
-<<<<<<< HEAD
 import Navbar from './components/Navbar/Navbar'
 import InterviewQuestion from './components/interviewQuestion/interviewQuestion.js'
-
-=======
-import Navbar from './components/Navbar/Navbar';
 import Interview from './components/Interview/interview';
->>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
 
 class App extends React.Component {
   constructor(props) {
@@ -29,6 +24,7 @@ class App extends React.Component {
     this.selectedQuestion = this.selectedQuestion.bind(this)
     this.changeRunTime = this.changeRunTime.bind(this)
     this.changeQuestionType = this.changeQuestionType.bind(this)
+    this.handleToggleLogin = this.handleToggleLogin.bind(this)
 
 
 
@@ -44,15 +40,13 @@ class App extends React.Component {
     categories: [],
     selectedQuestion: '', 
     runTime : '',
-<<<<<<< HEAD
     articles :[],
-    interviewQuestion: []
-=======
-    loggedIn: false
->>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
+    interviewQuestion: [],
+    loggedIn: false,
+    username: ''
   }
 
-  getQuestions = (questionType) => {
+  getQuestions = () => {
     axios.get(`/getAllQuestions`).then((response) => {
       var categoryArray = []
       response.data.forEach(element => {
@@ -84,8 +78,10 @@ class App extends React.Component {
     this.setState({ selectedQuestion: question })
 
   }
-  handleToggleLogin = () => {
-         this.setState((prevState) => ({loggedIn: !prevState.loggedIn}));
+  handleToggleLogin = (username) => {
+         this.setState(({loggedIn: true, username:username}),function(){
+           console.log(this.state)
+         });
        };
 
   changeRunTime = (runTime)=>{
@@ -99,7 +95,6 @@ class App extends React.Component {
     }
 
     getArticles=()=>{
-   
         axios.get('http://hn.algolia.com/api/v1/search?query=javascript algorithms').then((response)=>{
           console.log(response)
           var num = Math.floor(Math.random()*5)
@@ -116,6 +111,8 @@ class App extends React.Component {
 
     }
 
+    
+
 
   componentDidMount() {
     this.getQuestions()
@@ -128,17 +125,19 @@ class App extends React.Component {
       <Router>
         <div>
           <Navbar admin = {false}
-          name = ''/>
-          {/* <Header/> */}
+          name = {this.state.username}/>
+
           <Route exact path="/Interview" component={Interview} />
           <Route exact path="/" component={Landingpage} />
-          <Route exact path="/Signup" component={Signup} />
-<<<<<<< HEAD
-          <Route exact path="/Userlogin" component={Userlogin} />
+          <Route exact path="/Signup" render = {()=>
+
+            <Signup 
+            handleToggleLogin = {this.handleToggleLogin}
+            />
+
+           }/>
 
       
-=======
->>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
           <Route exact path='/Comment'  
               render = {()=>
               <QuestionComment    questionType={this.state.questionType}
@@ -152,7 +151,6 @@ class App extends React.Component {
 
 
 
-<<<<<<< HEAD
           <Route exact path='/QuestionType' render = {()=>
               <Category    
               questionType={this.state.questionType}
@@ -168,12 +166,9 @@ class App extends React.Component {
 
 
 
-          <Route exact path = "/Admin" component = {Admin}/>
-=======
-          <Route exact path='/QuestionType' component={Category}/>
+          
           <Route exact path = "/AdminCreateQuestion" component = {AdminCreateQuestion}/>
-          <Route exact path='/Question' render={({history}) =>
->>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
+          
 
 
           <Route exact path='/Question' render={({history}) =>
@@ -196,17 +191,12 @@ class App extends React.Component {
             />}>
 
           </Route>
-<<<<<<< HEAD
 
 
           <Route exact path='/interviewQuestion' render={()=>
-          <InterviewQuestion
-          
-          />}/>
+          <InterviewQuestion/>}    />
 
-=======
-            <Route exact path="/Login" component={Login} />
->>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
+          <Route exact path="/Login" component={Login} />
         </div>
 
       </Router>

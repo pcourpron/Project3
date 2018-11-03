@@ -22,6 +22,10 @@ var UserSchema = new mongoose.Schema({
   passwordConf: {
     type: String,
     required: true,
+  },
+  admin :{
+    type:  Boolean,
+    required:true
   }
 });
 

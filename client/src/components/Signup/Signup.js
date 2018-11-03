@@ -49,10 +49,12 @@ export default class Signup extends Component {
         email: this.state.email,
         username: this.state.username,
         password: this.state.password,
-        passwordConf: this.state.passwordConf
+        passwordConf: this.state.passwordConf,
+        admin: false
       }
   
       axios.post("/submit", body ).then(res => {
+        this.props.handleToggleLogin(body.username)
         console.log(res);
       }).catch(err => {
         console.log(err);

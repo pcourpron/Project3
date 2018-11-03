@@ -76,7 +76,6 @@ router.put('/addRunTime/:id',function(req,res){
   
 })
 
-<<<<<<< HEAD
 router.put('/addComment/:id',function(req,res){
   console.log(req.body)
   db.Question.findByIdAndUpdate(
@@ -89,7 +88,6 @@ router.put('/addComment/:id',function(req,res){
     })
 })
 
-=======
 
 router.post("/submit", (req, res) => {
   var userData = {
@@ -97,6 +95,7 @@ router.post("/submit", (req, res) => {
     username: req.body.username,
     password: req.body.password,
     passwordConf: req.body.passwordConf,
+    admin: false
   }
 
   db.User.create(userData, function (error, user) {
@@ -182,7 +181,6 @@ router.get('/logout', function (req, res, next) {
     });
   }
 });
->>>>>>> 1ffa9ed9c0d88fc249ae30a6a8cafee8de5b4a93
 
 
 module.exports = router;
