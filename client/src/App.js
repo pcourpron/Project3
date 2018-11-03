@@ -99,7 +99,13 @@ class App extends React.Component {
         <div>
           <Navbar/>
           {/* <Header/> */}
-          <Route exact path="/Interview" component={Interview} />
+          <Route exact path="/Interview" 
+          render = {()=>
+          <Interview
+          questions = {this.state.questions}
+          selectedCategory = {this.state.selectedCategory}
+        />}/>
+          component={Interview} />
           <Route exact path="/" component={Landingpage} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path='/Comment'  
