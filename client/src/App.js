@@ -96,7 +96,7 @@ class App extends React.Component {
     }
 
     getArticles=()=>{
-        axios.get('http://hn.algolia.com/api/v1/search?query=javascript algorithms').then((response)=>{
+        axios.get('https://hn.algolia.com/api/v1/search?query=javascript algorithms').then((response)=>{
           console.log(response)
           var num = Math.floor(Math.random()*5)
           this.setState({articles : response.data.hits.slice(num,num+5)})
