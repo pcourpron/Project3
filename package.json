@@ -11,7 +11,7 @@
     "install": "cd client && yarn install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "test": "jasmine-node spec/peopleSpec.js"
+
   },
   "author": "",
   "license": "ISC",
@@ -23,7 +23,6 @@
 
     "deep-strict-equal": "^0.2.0",
     "if-env": "^1.0.4",
-    "jasmine-node": "^1.16.2",
     "request": "^2.88.0",
     "bcrypt": "^3.0.2",
     "benchmark": "^2.1.4",

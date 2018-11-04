@@ -1,11 +1,8 @@
 const router = require("express").Router();
 var db = require("../models");
-<<<<<<< HEAD
 var equal = require('deep-strict-equal');
-=======
 const questions = require( "../questions.json");
 
->>>>>>> af83c8189554caf8ce1c36860a89402715380d0d
 
 
 router.get("/api/allQuestions", function(req, res){
@@ -55,7 +52,6 @@ router.put("/api/userQuestionScores/:id", function(req, res){
   
 });
 
-<<<<<<< HEAD
   router.post("/post", function(req, res) {
     
     eval(`{${req.body.function}}`)
@@ -65,7 +61,6 @@ router.put("/api/userQuestionScores/:id", function(req, res){
 });
 
 
-=======
 router.get('/getAllQuestions',function(req,res){
   db.Question.find({}).then(function (data){
     res.json(data);
@@ -196,7 +191,6 @@ router.get('/logout', function (req, res, next) {
     });
   }
 });
->>>>>>> af83c8189554caf8ce1c36860a89402715380d0d
 
 
 module.exports = router;
