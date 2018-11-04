@@ -33,14 +33,18 @@ export default class Login extends Component {
 
   //existing user
   handleSubmitLogin = (e) => {
-    console.log(this.state)
+  
     e.preventDefault();
     const loginBody = {
       email: this.state.email,
       username: this.state.username,
       password: this.state.password,
+      admin: false
     }
+    console.log(loginBody)
     axios.post("/login", loginBody).then(res => {
+      this.props.handleToggleLogin(this.setState.username)
+
       console.log(res.data);
     }).catch(err => {
       console.log(err);

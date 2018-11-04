@@ -8,61 +8,130 @@ class QuestionComment extends React.Component {
 
     state = {
         comments: [],
-        run_Time: []
+        run_Time: [],
+        user: '',
+        comment: ''
+    }
+    handleSubmit = (event) => {
+        event.preventDefault()
+        console.log(this.state.user)
+        this.addComment({ author: this.state.user, text: this.state.comment })
+
+    }
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value }, () => {
+            console.log(this.state)
+        })
+
+    }
+
+    addComment = (body) => {
+        axios.put(`/addComment/${this.props.selectedQuestion._id}`, body).then((response) => {
+            axios.get(`/getComments/${this.props.selectedQuestion._id}`).then((response) => {
+                let newTime = response.data.runTime.sort((a, b) => a - b);
+                this.setState({ comments: response.data.comments })
+                this.setState({ run_Time: newTime })
+            }
+            )
+        })
     }
 
 
     componentDidMount = () => {
         axios.get(`/getComments/${this.props.selectedQuestion._id}`).then((response) => {
-            let newTime = response.data.runTime.sort((a, b) => a-b);
+            let newTime = response.data.runTime.sort((a, b) => a - b);
             this.setState({ comments: response.data.comments })
-            this.setState({ run_Time: newTime})
+            this.setState({ run_Time: newTime })
+        }
+        )
     }
-    )}
 
 
     render() {
-   
+
         return (
-            <div className='conatainer' style = {{marginTop:'100px'}}>
+            <div className='container' style={{ marginTop: '100px' }}>
                 <div className='row justify-content-center'>
-                    <div className='col-md-6 d-flex justify-content-center'>
-                       <div style={{width:'100%'}} className='d-flex justify-content-center'><h3 >{this.props.selectedQuestion.category}</h3></div>
-                        
+                    <div className='col-md-6'>
+                        <div className='row justify-content-center'>
+                            <h3 style={{ width: '100%', textAlign: "center" }}>{this.props.selectedQuestion.category}</h3>
+                        </div>
+                        <div className='row'>
+                            <h6 style={{ width: '100%', textAlign: "center" }}>{this.props.selectedQuestion.text}</h6>
+                        </div>
+
                     </div>
                 </div>
                 <div className='row justify-content-center'>
-                
 
-                <div className='col-md-8'>
-                <ul>
 
-                { this.state.runTime === [] ? null : this.state.run_Time.map((element,index) => (
-                    <li>
-                       <span style={this.props.runTime === element? {fontWeight:'bold'}:null}>{`${index + 1}. ${ element}ms`}</span> 
-                    </li>
-                ))}
+                    <div className='col-md-8'>
 
-                </ul>
-                </div>
-                </div>
-                <div className='row'>
-                <div className='col-md-4'>
-                {this.state.comments.map((element,index) => {
-                    return (
-                       
-                            <div class="card">
-                                <div class="card-header" style={{color:'white'}}>
-                                    {`Comment ${index+1}`}
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">{element}</p>
-                                </div>
+                        {console.log(this.state.run_Time)}
+                        {this.state.run_Time[0] === undefined ?
+
+                            <div className='row justify-content-center' style={{ marginTop: '40px' }}>
+                                <h5 style={{ textAlign: "center" }}>{`There are no timed runs yet! Go ahead and give it a try!`}</h5>
                             </div>
 
-                        )
-                })}
+                            :
+
+                            this.state.run_Time.map((element, index) => (
+
+                                <div className='row' style={ this.props.runTime === element ? {backgroundColor:'green'} :index % 2 === 0 ? { backgroundColor: 'white' } : { backgroundColor: 'lightgrey' }}>
+                                    <span style={this.props.runTime === element ? { fontWeight: 'bold' } : null}>{`${index + 1}. ${element}ms`}</span>
+                                </div>
+
+                            ))}
+
+
+
+                    </div>
                 </div>
+                <div className='row justify-content-center' style={{ marginTop: '20px' }}>
+                    <div> <h4>Comments</h4></div>
+                </div>
+                <div className='row justify-content-center'>
+
+                    <div className='col-md-7'>
+                        {this.state.comments[0] === undefined ?
+                            <h6 style={{ textAlign: "center" }}>There are no comments yet! Submit your comment below if you have one!</h6>
+                            :
+                            this.state.comments.map((element, index) => {
+                                return (
+                                    <div style={{border:'1px lightgrey solid', borderRadius:'7px'}}>
+                                        <div className='row' style={{ borderBottom: '1px solid grey', padding: '10px 0'}}>
+                                            <div style={{paddingLeft:'10px'}}> <h6> {`Comment ${index + 1}`}</h6></div>
+                                         
+                                        </div>
+                                        <div className='row'>
+                                            {element.text}
+                                        </div>
+                                        <div className='row'>
+                                            Written by: {element.author === undefined ? 'anonymous' : element.author}
+                                        </div>
+                                    </div>
+
+                                )
+                            })}
+                    </div>
+                </div>
+                <div className='row justify-content-center'>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Username:
+                            <br />
+                            <input placeholder='username' type="text" name="user" style={{ width: '300px' }} onChange={this.handleChange} required />
+                        </label>
+                        <br />
+                        <label>
+                            Comment:
+                        </label><br />
+                        <textarea name='comment' placeholder={`Enter your comment here!`} style={{ height: '100px', width: '300px' }} onChange={this.handleChange} required> </textarea>
+                        <br></br>
+                        <input className='btn btn-primary' type="submit" value="Submit" />
+                    </form>
+
                 </div>
             </div>
         );

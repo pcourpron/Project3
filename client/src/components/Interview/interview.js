@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from '../Card/card'
 import DrawButton from '../Drawbutton/Drawbutton';
 import './interview.css';
-
+import {Link} from "react-router-dom";
 
 
 export default class App extends Component {
@@ -10,15 +10,16 @@ export default class App extends Component {
     super(props);
     this.state = {
       cards: [],
-      currentCard: {}
+      currentCard: {},
+      index: 0
     }
 
-    this.updateCard = this.updateCard.bind(this);
+    this.getNewCard = this.getNewCard.bind(this);
   }
 
-  componentWillMount() {
-
-    this.getCards();
+  componentDidMount() {
+      this.getCards()
+      
   }
 
   getCards = () => {
@@ -26,22 +27,28 @@ export default class App extends Component {
     var cardsByCat = this.props.questions.filter(item => {
       return item.category === this.props.selectedCategory
     });
-
-    this.setState({cards: cardsByCat});
-    this.setState({currentCard: this.getRandomCard(cardsByCat)});
-
-  }
-  getRandomCard(currentCards) {
-    let card = currentCards[0];
-    return card;
+  
+    this.setState({cards: cardsByCat},()=>{
+    this.setState({currentCard: this.state.cards[0]});})
   }
 
-  updateCard() {
-    const currentCards = this.state.cards;
-    this.setState({
-      currentCard: this.getRandomCard(currentCards)
-    })
+  getNewCard() {
+      this.setState({index: this.state.index +1},()=>{
+        if(this.state.index > this.state.cards.length-1){
+          let end = {
+          text: `You're Done!`,
+          answer: `I can't believe you checked the back side, go pick another category...`
+          }
+          this.setState({currentCard:end},()=>{console.log(this.state)})
+        }
+        else{
+        this.setState({currentCard: this.state.cards[this.state.index]});
+        }
+      })
+      
+   
   }
+
 
   render() {
     return (
@@ -53,7 +60,8 @@ export default class App extends Component {
           />
         </div>
         <div className='button-row'>
-          <DrawButton drawCard={this.updateCard} />
+          {this.state.index > this.state.cards.length-1? <Link to= "/questionType"><button className = "btn btn-lg btn-danger">Back to Categories</button></Link>: <DrawButton drawCard={this.getNewCard} /> }
+          
         </div>
       </div>
     );

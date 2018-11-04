@@ -11,7 +11,8 @@ import Categories from './components/Categories/Categories'
 import AdminCreateQuestion from "./components/Admin/AdminCreateQuestion"
 import axios from 'axios'
 import QuestionComment from "./components/Comment/index.js";
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar'
+import InterviewQuestion from './components/interviewQuestion/interviewQuestion.js'
 import Interview from './components/Interview/interview';
 
 class App extends React.Component {
@@ -22,6 +23,9 @@ class App extends React.Component {
     this.categoryClick = this.categoryClick.bind(this)
     this.selectedQuestion = this.selectedQuestion.bind(this)
     this.changeRunTime = this.changeRunTime.bind(this)
+    this.changeQuestionType = this.changeQuestionType.bind(this)
+    this.handleToggleLogin = this.handleToggleLogin.bind(this)
+    this.logOut = this.logOut.bind(this)
 
 
 
@@ -37,12 +41,14 @@ class App extends React.Component {
     categories: [],
     selectedQuestion: '', 
     runTime : '',
-    loggedIn: false
+    articles :[],
+    interviewQuestion: [],
+    loggedIn: false,
+    username: ''
   }
 
-  getQuestions = (questionType) => {
-    console.log(questionType)
-    axios.get(`/getAllCoding/${questionType}`).then((response) => {
+  getQuestions = () => {
+    axios.get(`/getAllQuestions`).then((response) => {
       var categoryArray = []
       response.data.forEach(element => {
         categoryArray.push(element.category)
@@ -70,12 +76,13 @@ class App extends React.Component {
   }
 
   selectedQuestion(question) {
-    console.log(question)
     this.setState({ selectedQuestion: question })
 
   }
-  handleToggleLogin = () => {
-         this.setState((prevState) => ({loggedIn: !prevState.loggedIn}));
+  handleToggleLogin = (username) => {
+         this.setState(({loggedIn: true, username:username}),function(){
+           console.log(this.state)
+         });
        };
 
   changeRunTime = (runTime)=>{
@@ -84,12 +91,34 @@ class App extends React.Component {
     })
   }
 
+    changeQuestionType = (event)=>{
+      this.setState({questionType: event.target.value})
+    }
+
+    getArticles=()=>{
+        axios.get('http://hn.algolia.com/api/v1/search?query=javascript algorithms').then((response)=>{
+          console.log(response)
+          var num = Math.floor(Math.random()*5)
+          this.setState({articles : response.data.hits.slice(num,num+5)})
+        })
+    
+     
+    }
 
 
+    logOut = ()=>{
+      this.setState({username:''})
+      axios.get('/logout')
+      console.log('hit')
+
+    }
+
+    
 
 
   componentDidMount() {
-    this.getQuestions('coding')
+    this.getQuestions()
+    this.getArticles()
   }
 
 
@@ -97,17 +126,27 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Navbar/>
-          {/* <Header/> */}
+          <Navbar admin = {false}
+          name = {this.state.username}
+          logOut={this.logOut}/>
           <Route exact path="/Interview" 
           render = {()=>
           <Interview
+          
           questions = {this.state.questions}
           selectedCategory = {this.state.selectedCategory}
         />}/>
-          component={Interview} />
           <Route exact path="/" component={Landingpage} />
-          <Route exact path="/Signup" component={Signup} />
+          <Route exact path="/Signup" render = {(history)=>
+
+            <Signup 
+            handleToggleLogin = {this.handleToggleLogin}
+            history = {history}
+            />
+
+           }/>
+
+      
           <Route exact path='/Comment'  
               render = {()=>
               <QuestionComment    questionType={this.state.questionType}
@@ -115,23 +154,41 @@ class App extends React.Component {
               categories={this.state.categories}
               selectedCategory={this.state.selectedCategory}
               selectedQuestion={this.state.selectedQuestion}
-              runTime = {this.state.runTime}/>
+              runTime = {this.state.runTime}
+              getArticles = {this.getArticles}/>
           }/>
 
 
 
-          <Route exact path='/QuestionType' component={Category}/>
-          <Route exact path = "/AdminCreateQuestion" component = {AdminCreateQuestion}/>
-          <Route exact path='/Question' render={({history}) =>
+          <Route exact path='/QuestionType' render = {()=>
+              <Category    
+              questionType={this.state.questionType}
+              changeQuestionType = {this.changeQuestionType}
+              categories={this.state.categories}
+              selectedCategory={this.state.selectedCategory}
+              selectCategory = {this.categoryClick}
+              questions = {this.state.questions}
+              articles = {this.state.articles}
+              selectedQuestion = {this.selectedQuestion}
+              />}/>
 
+
+
+
+          
+          <Route exact path = "/AdminCreateQuestion" component = {AdminCreateQuestion}/>
+          
+
+
+          <Route exact path='/Question' render={({history}) =>
             <Question
               selectedQuestion = {this.state.selectedQuestion}
               changeRunTime = {this.changeRunTime}
               history = {history}
-            />}>
-          </Route>
-          <Route exact path='/Categories' render={() =>
+            />}> </Route>
 
+
+          <Route exact path='/Categories' render={() =>
             <Categories
               questionType={this.state.questionType}
               getQuestions={this.getQuestions}
@@ -143,7 +200,12 @@ class App extends React.Component {
             />}>
 
           </Route>
-            <Route exact path="/Login" component={Login} />
+
+
+          <Route exact path='/interviewQuestion' render={()=>
+          <InterviewQuestion/>}    />
+
+          <Route exact path="/Login" component={Login} />
         </div>
 
       </Router>
