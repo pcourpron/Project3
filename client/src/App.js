@@ -25,6 +25,7 @@ class App extends React.Component {
     this.changeRunTime = this.changeRunTime.bind(this)
     this.changeQuestionType = this.changeQuestionType.bind(this)
     this.handleToggleLogin = this.handleToggleLogin.bind(this)
+    this.logOut = this.logOut.bind(this)
 
 
 
@@ -96,7 +97,7 @@ class App extends React.Component {
     }
 
     getArticles=()=>{
-        axios.get('http://hn.algolia.com/api/v1/search?query=javascript algorithms').then((response)=>{
+        axios.get('https://hn.algolia.com/api/v1/search?query=javascript algorithms').then((response)=>{
           console.log(response)
           var num = Math.floor(Math.random()*5)
           this.setState({articles : response.data.hits.slice(num,num+5)})
@@ -107,8 +108,9 @@ class App extends React.Component {
 
 
     logOut = ()=>{
-      this.setState({user_id:''})
-      axios.get('/logOut')
+      this.setState({username:''})
+      axios.get('/logout')
+      console.log('hit')
 
     }
 
@@ -126,14 +128,21 @@ class App extends React.Component {
       <Router>
         <div>
           <Navbar admin = {false}
-          name = {this.state.username}/>
-
-          <Route exact path="/Interview" component={Interview} />
+          name = {this.state.username}
+          logOut={this.logOut}/>
+          <Route exact path="/Interview" 
+          render = {()=>
+          <Interview
+          
+          questions = {this.state.questions}
+          selectedCategory = {this.state.selectedCategory}
+        />}/>
           <Route exact path="/" component={Landingpage} />
-          <Route exact path="/Signup" render = {()=>
+          <Route exact path="/Signup" render = {(history)=>
 
             <Signup 
             handleToggleLogin = {this.handleToggleLogin}
+            history = {history}
             />
 
            }/>

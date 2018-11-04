@@ -1,5 +1,6 @@
 const router = require("express").Router();
 var db = require("../models");
+var equal = require('deep-strict-equal');
 const questions = require( "../questions.json");
 
 
@@ -50,6 +51,15 @@ router.put("/api/userQuestionScores/:id", function(req, res){
     })
   
 });
+
+  router.post("/post", function(req, res) {
+    
+    eval(`{${req.body.function}}`)
+    res.send(Test([4,5,3,6,4]))
+  
+    
+});
+
 
 router.get('/getAllQuestions',function(req,res){
   db.Question.find({}).then(function (data){

@@ -35,10 +35,6 @@ const Category = (props) => {
           </div>
 
 
-
-
-
-
           {props.questionType === 'coding' ?
           <div>
           <div className='row justify-content-center' style={{ marginTop: '20px' }}>
@@ -47,7 +43,7 @@ const Category = (props) => {
            { /* Coding Questions */}
             <div className='row' style={{ marginTop: '30px' }}>
               <div className='col-md-3' style={{ border: '1px lightblue solid', borderRadius: '5px', backgroundColor: '#ecf5fa', padding: '10px 10px 0 10px', height: '280px' }}>
-                <h6 style={{ textDecoration: 'underline' }}>Categories</h6>
+                <h6 style={{ textDecoration: 'underline', color:'black' }}>Categories</h6>
 
                 <ul style={{ padding: '0' }}>
                   {props.categories.filter(element => {
@@ -133,33 +129,20 @@ const Category = (props) => {
                   }).map(element => {
                     return (
 
-                      <Link to='/interviewQuestion'><div className='row justify-content-center' style={{ listStyleType: 'none', fontWeight: 'bold', fontSize: '25px', textDecoration: '', backgroundColor: '#adedf4', marginBottom: '10px', color: 'black', borderRadius: '5px' }}
+                      <Link to='/interview'><div className='row justify-content-center' style={{ listStyleType: 'none', fontWeight: 'bold', fontSize: '25px', textDecoration: '', backgroundColor: '#adedf4', marginBottom: '10px', color: 'black', borderRadius: '5px' }}
                         onClick={() => { props.selectCategory(element) }}>  <span>{element}</span> </div></Link>
                     ) })}
 
                 </div>
               </div>
             </div>
-
-
-
           }
-
-
-
-
-
-
-
-
-
-
 
         </div>
 
         <div className='col-md-2' style={{ borderLeft: '1px solid grey' }}>
           <div className='row text-center'>
-            <h5>Articles to help you learn!</h5>
+            <h6 style={{ color: "black" }}>Articles to help you learn!</h6>
             {props.articles.map(element => {
               return (<div className='row' style={{ border: '1px solid #f2f2f2', marginBottom: '10px' }}> <a href={element.url}>{element.title}</a> </div>)
 

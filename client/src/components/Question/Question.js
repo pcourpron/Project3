@@ -3,15 +3,9 @@ import AceEditor from "react-ace";
 import "./Question.css";
 import { Link } from 'react-router-dom'
 import equal from "deep-strict-equal";
-
 import '../../../node_modules/brace/mode/javascript'
 import '../../../node_modules/brace/theme/dracula'
 import axios from 'axios'
-
-
-
-
-
 import Instructions from '../Instructions/instructions'
 
 

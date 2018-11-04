@@ -1,3 +1,4 @@
+
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
@@ -7,6 +8,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var MongoStore = require('connect-mongo')(session);
 
+var exports = module.exports = {};
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -42,18 +44,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/public"));
+  app.use(express.static("client/build"));
 }
 
 // Define API routes here
 const routes = require("./routes/api.js");
 app.use(routes);
 
-// Send every other request to the React app
-// Define any API routes before this runs
+
+
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
-});
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// Define any API routes before this runs
+})
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codingQuestions");
@@ -63,6 +66,10 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codingQuestions
 // });
 
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
+var server =app.listen(PORT, () => {
+  console.log(`🌎 ==> Server now on port ${PORT}!`);      
 });
+
+exports.closeServer = function(){
+  server.close();
+};

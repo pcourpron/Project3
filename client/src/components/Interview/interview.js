@@ -2,70 +2,66 @@ import React, { Component } from 'react';
 import Card from '../Card/card'
 import DrawButton from '../Drawbutton/Drawbutton';
 import './interview.css';
+import {Link} from "react-router-dom";
 
 
 export default class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      cards: [
-        {code: 'How is everything treated in HTML DOM?', description: 'Explanation: In the HTML DOM (Document Object Model), everything is a node. The document itself is a document node. All HTML elements are element nodes.'}
-        ],
-      currentCard: {}
+      cards: [],
+      currentCard: {},
+      index: 0
     }
 
-    this.updateCard = this.updateCard.bind(this);
+    this.getNewCard = this.getNewCard.bind(this);
   }
 
-  componentWillMount() {
-    const currentCards = this.state.cards;
+  componentDidMount() {
+      this.getCards()
+      
+  }
 
-    fetch('https://raw.githubusercontent.com/for-GET/know-your-http-well/master/json/status-codes.json')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
-        data.forEach(function(item) {
-          let desc = item.description;
-          desc = desc.replace(/"/g,"");
-          currentCards.push({code: item.code , description: desc});
-        });
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
-
-
-    this.setState({
-      cards: currentCards,
-      currentCard: this.getRandomCard(currentCards)
+  getCards = () => {
+    
+    var cardsByCat = this.props.questions.filter(item => {
+      return item.category === this.props.selectedCategory
     });
+  
+    this.setState({cards: cardsByCat},()=>{
+    this.setState({currentCard: this.state.cards[0]});})
   }
 
-  getRandomCard(currentCards) {
-    let card = currentCards[Math.floor(Math.random() * currentCards.length)];
-    return card;
+  getNewCard() {
+      this.setState({index: this.state.index +1},()=>{
+        if(this.state.index > this.state.cards.length-1){
+          let end = {
+          text: `You're Done!`,
+          answer: `I can't believe you checked the back side, go pick another category...`
+          }
+          this.setState({currentCard:end},()=>{console.log(this.state)})
+        }
+        else{
+        this.setState({currentCard: this.state.cards[this.state.index]});
+        }
+      })
+      
+   
   }
 
-  updateCard() {
-    const currentCards = this.state.cards;
-    this.setState({
-      currentCard: this.getRandomCard(currentCards)
-    })
-  }
 
   render() {
     return (
       <div className='flashcards'>
       <h1>Flashcards</h1>
         <div className='card-row'> 
-          <Card question={this.state.currentCard.code}
-                answer={this.state.currentCard.phrase}
-                description={this.state.currentCard.description} 
+          <Card question={this.state.currentCard.text}
+                answer={this.state.currentCard.answer}
           />
         </div>
         <div className='button-row'>
-          <DrawButton drawCard={this.updateCard} />
+          {this.state.index > this.state.cards.length-1? <Link to= "/questionType"><button className = "btn btn-lg btn-danger">Back to Categories</button></Link>: <DrawButton drawCard={this.getNewCard} /> }
+          
         </div>
       </div>
     );

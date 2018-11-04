@@ -8,6 +8,7 @@ import {
 // import LoadingButton from "../LoadingButton/LoadingButton";
 import "./Signup.css";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 export default class Signup extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ export default class Signup extends Component {
         console.log("Passwords are not matching")
         return;
       }
+      console.log(this.props.history)
   
       const body = {
         email: this.state.email,
@@ -56,6 +58,7 @@ export default class Signup extends Component {
       axios.post("/submit", body ).then(res => {
         this.props.handleToggleLogin(body.username)
         console.log(res);
+        this.props.history.history.push('/questionType')
       }).catch(err => {
         console.log(err);
       })
@@ -69,7 +72,7 @@ export default class Signup extends Component {
   
   renderForm() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} >
         <FormGroup controlId="email" bsSize="large">
           <ControlLabel><h4>Email</h4></ControlLabel>
           <FormControl
@@ -104,7 +107,7 @@ export default class Signup extends Component {
             type="password"
           />
         </FormGroup>
-        <Button
+      <Button
           block
           bsSize="large"
           disabled={!this.validateForm()}
