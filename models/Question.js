@@ -6,8 +6,12 @@ const questionSchema = new Schema({
     type: String, 
     unique: true
   }, 
-  category: {
+  answer: {
     type: String
+  },
+  category: {
+    type: String,
+    required: true
   },
   scores: {
     type: Array
@@ -18,11 +22,15 @@ const questionSchema = new Schema({
   runTime: {
     type: Array
   },
-  bigO: {
-    type: Array
-  },
   tests: {
     type: Array,
+    required: true
+  },
+  comments: {
+    type:Array
+  },
+  questionType : {
+    type: String,
     required: true
   }
 });

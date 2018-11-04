@@ -1,75 +1,147 @@
 import React, { Component } from "react";
 import AceEditor from "react-ace";
+import "./Question.css";
+import { Link } from 'react-router-dom'
+import equal from "deep-strict-equal";
+import '../../../node_modules/brace/mode/javascript'
+import '../../../node_modules/brace/theme/dracula'
+import axios from 'axios'
+import Instructions from '../Instructions/instructions'
+
 
 class Question extends Component {
-
+    constructor(props) {
+        super(props)
+    }
     state = {
-        code: ""
+        code: `function testFunction(input){
+        }`,
+        result: '',
+        runTime: ''
+    }
+
+    checker = () => {
+        try {
+            var testing = new Function(`return ${this.state.code}`)()
+            var tests = this.props.selectedQuestion.tests
+            var result
+
+            for (let i = 0; i < tests.length; i++) {
+
+                if (!equal(testing(tests[i].input), tests[i].expected)) {
+                    result = (`${tests[i].input} does not return ${tests[i].expected} but returns ${testing(tests[i].input)}`);
+                    this.setState({result:result})
+                    break
+                }
+                if (i === tests.length - 1) {
+                    result = 'You passed!'
+                    this.benchmark(testing, tests[0].input)
+                    this.setState({ result: result })
+                    break
+                }
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    benchmark(testing, input) {
+        var testingTime = []
+        var average = 0
+        for (let i = 0; i < 50; i++) {
+            var start = window.performance.now();
+            testing(input)
+            var end = window.performance.now();
+            testingTime.push(end - start)
+        }
+
+        testingTime.forEach(time => average += time)
+        average = average /50
+        console.log(average)
+        this.props.changeRunTime(average)
+
+
+        axios.put(`/addRunTime/${this.props.selectedQuestion._id}`, {runTime:average}).then(
+            ()=>{
+                this.props.history.push('/Comment')
+            }
+        )
+
+    
+
+    }
+
+    clearEditor = ()=>{
+        this.setState({code: `function testFunction(input){
+    }`})
     }
 
     handleChange = (event) => {
-        this.setState({ code: event})
-        console.log(event)
+        this.setState({ code: event })
     }
-    submitCode = () => {
-        // hit the submit code back end route sending with this.state.code
 
-    }
+
+
 
     render() {
         return (
-            <div className="container">
+            <div className="container" style={{ marginTop: '100px' }}>
                 <div className="row">
-                    <div className="col-lg-6">
+                    <Instructions 
+                    text={this.props.selectedQuestion.text}
+                    output = {this.state.result}
+                    tests={this.props.selectedQuestion.tests}/>
+                    
+                    <div className="col-md-8" style={{ border: ' 1px solid grey' }}>
+                        <div> <h4 className='text-center' style={{ width: '100%' }}>Solution:</h4></div>
                         <div class="card">
-                            <h5 class="card-header">Category Question #n</h5>
                             <div class="card-body">
-                                <h6 class="card-title">Create a bubble sort that will sort an array in ascending order</h6>
-                                <p class="card-text">Input: [5,3,2,6,1] Expected Output: [1,2,3,5,6] <br />
-                                    Wrap your code in a single function</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-6">
-                        <div class="card">
-                            <h5 class="card-header">Write Your Code Here</h5>
-                            <div class="card-body">
-                                <h6 class="card-title">Create a bubble sort that with sort an array in ascending order</h6>
                                 <div class="card-text">
                                     <div class="input-group input-group-lg">
-                                        <div class="input-group-prepend">
-
-                                        </div>
-
                                         <AceEditor
                                             mode="javascript"
-                                            theme="github"
-                                            onChange={ this.handleChange}
+                                            theme="dracula"
+                                            onChange={this.handleChange}
                                             name="userCode"
                                             editorProps={{ $blockScrolling: true }}
-                                            value = {this.state.code}
-                                        
-                                        />
-
-
-                                        {/* <textarea
-                                            type="text"
                                             value={this.state.code}
-                                            id="userCode"
-                                            onChange={this.handleChange}
-                                            class="form-control"
-                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" /> */}
-                                        <button
-                                            className="btn btn-primary"
-                                            onClick={this.submitCode}>Submit</button>
+                                            width='100%'
+                                            height='400px'
+                                            setOptions={{ showPrintMargin: false }}
+                                        />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div className='row'>
+                        {console.log(this.props.selectedQuestion.tests[0].input)}
+                     
+                        </div>
+                        
+                   
+                
+                <div className='row justify-content-around' style={{ margin: '20px 0' }}>
+                    <button className="btn btn-primary"
+                        onClick={this.checker} >Submit</button>
+
+                    <Link to='/Comment' {...this.props}><button className='btn btn-primary'>Comment</button></Link>
+
+                    <button className='btn btn-primary' onClick={this.clearEditor}> Reset</button>
+                    <button className='btn btn-primary'> Back</button>
                 </div>
             </div>
+
+
+                </div >
+
+            <div className='row'>
+            
+            </div>
+          
+            </div >
         )
     }
 }

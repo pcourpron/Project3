@@ -16,17 +16,11 @@
   
     .Login form {
       margin: 0 auto;
-      max-width: 320px;
+      max-width: 200px;
     }
   }
 
-  h2 {
-      color: white;
-  }
-
-  h3 {
-    color:black; 
-  }
+ 
   
   .home-button {
     line-height: 12px;
@@ -65,9 +59,4 @@
  /* padding: 5px; */
  line-height: normal;
 
-}
-
-h5 {
-    color: white;
-    font-size: 45px
 }
