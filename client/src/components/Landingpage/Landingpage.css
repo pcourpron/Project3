@@ -18,32 +18,30 @@
     text-align:"center" 
 }
 
-:local(.btn-secondary) {
-    color: black;
-    background-color: white;
-    border-color:white;
-    margin-bottom: 80px;
-    margin-top: 0px;
-}
-
 :local(h1) {
     font-family: monospace;
     color: aliceblue;
     font-size: 70px;
     padding-top: 160px;
     /* padding-top: 260px; */
-    
 }
+
 :local(p) {
     color: white;
     text-align: center;
     font-family: monospace;
     font-size: 20px;
 }
+
 :local(a) {
     /* color: grey; */
     text-align: center;
     font-family: monospace;
+    padding: 10px;
+}
+
+:local(button) {
+    border-radius: 25px;
 }
 
 :local(#justified-content-center) {

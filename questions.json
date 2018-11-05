@@ -168,7 +168,7 @@
         ]
     },
     {
-        "text": "Write a JavaScript program to count the number of vowels of this given string ('Javascript')",
+        "text": "Write a JavaScript program to count the number of vowels of any given string",
         "questionType": "coding",
         "category": "Work With Strings",
         "tests": [
