@@ -8,6 +8,8 @@ import "./Login.css";
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import axios from "axios";
+//import { url } from "inspector";
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -71,10 +73,20 @@ export default class Login extends Component {
 
   })}
   
-   render(){
+   render() {
      return(
-          <div className="Login">
-              <form onSubmit={this.handleSubmitLogin}>
+
+  
+     
+      <div className="container-fluid-login" style ={ { backgroundImage: "url('https://images6.alphacoders.com/486/486293.png')",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        width: "100%",
+        minHeight: "100vh",
+        position: "fixed",
+        padding: "0",
+        margin: "0", }}>>
+              <form className = "logForm" onSubmit={this.handleSubmitLogin}>
                   <FormGroup controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl
@@ -107,3 +119,4 @@ export default class Login extends Component {
       );
     }
   }
+

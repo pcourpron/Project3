@@ -29,7 +29,7 @@ class Question extends Component {
             for (let i = 0; i < tests.length; i++) {
 
                 if (!equal(testing(tests[i].input), tests[i].expected)) {
-                    result = (`${tests[i].input} does not return ${tests[i].expected} but returns ${testing(tests[i].input)}`);
+                    result = (`${JSON.stringify(tests[i].input)} does not return ${JSON.stringify(tests[i].expected)} but returns ${testing(tests[i].input)}`);
                     this.setState({result:result})
                     break
                 }
@@ -68,7 +68,6 @@ class Question extends Component {
                 this.props.history.push('/Comment')
             }
         )
-
     
 
     }
@@ -87,17 +86,17 @@ class Question extends Component {
 
     render() {
         return (
-            <div className="container" style={{ marginTop: '100px' }}>
+            <div className='container-fluid' style={{ marginTop: '56px', backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100%", paddingTop:'40px'}}>
                 <div className="row">
                     <Instructions 
                     text={this.props.selectedQuestion.text}
                     output = {this.state.result}
                     tests={this.props.selectedQuestion.tests}/>
                     
-                    <div className="col-md-8" style={{ border: ' 1px solid grey' }}>
+                    <div className="col-md-8" style={{ border: ' 1px solid grey', backgroundColor: "transparent" }}>
                         <div> <h4 className='text-center' style={{ width: '100%' }}>Solution:</h4></div>
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style={{backgroundColor: "#f1f1f1"}} >
                                 <div class="card-text">
                                     <div class="input-group input-group-lg">
                                         <AceEditor
@@ -124,13 +123,13 @@ class Question extends Component {
                    
                 
                 <div className='row justify-content-around' style={{ margin: '20px 0' }}>
-                    <button className="btn btn-primary"
+                    <button className="btn btn-success"
                         onClick={this.checker} >Submit</button>
 
-                    <Link to='/Comment' {...this.props}><button className='btn btn-primary'>Comment</button></Link>
+                    <Link to='/Comment' {...this.props}><button className='btn btn-success' >Comment</button></Link>
 
-                    <button className='btn btn-primary' onClick={this.clearEditor}> Reset</button>
-                    <Link to='/questionType' ><button className='btn btn-primary'> Back</button></Link>
+                    <button className='btn btn-dance' onClick={this.clearEditor}> Reset</button>
+                    <Link to='/questionType' ><button className='btn btn-success'> Back</button></Link>
                 </div>
             </div>
 

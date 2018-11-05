@@ -5,8 +5,8 @@ import './card.css';
 const Card = (props) => (
   <div className='card-container1'>
     <div className='card1'>
-      <div className='front1'>
-        <div className='question1'>{props.question}</div>
+      <div className='front1' style={{backgroundColor: "grey"}}>
+        <div className='question1' style={{textAlign:"center"}}>{props.question}</div>
       </div>
       <div className='back1'>
         <div className='answer1'>{props.answer}</div>

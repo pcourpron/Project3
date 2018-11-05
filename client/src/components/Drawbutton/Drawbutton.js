@@ -15,7 +15,7 @@ export default class DrawButton extends Component {
   render(props) {
     return (
       <div className='button-container'>
-        <button className='button1' onClick={this.drawCard}>Draw card</button>
+        <button className='button1' onClick={this.drawCard} style={{marginTop:'5px'}}>Draw card</button>
       </div>
     );
   }

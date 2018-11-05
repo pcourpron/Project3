@@ -52,9 +52,14 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className='flashcards'>
-      <h1>Flashcards</h1>
-      <p> Click and Hold to see the back of the flashcard.</p>
+     
+
+     
+      <div className='flashcards' style={{backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100%",minHeight:'100vh', marginTop:'56px'}}>
+      <h1 style= {{marginTop:'5px', color: 'white'}}>Flashcards</h1>
+      <p style = {{color:'white'}}> Click and Hold to see the back of the flashcard.</p>
+
+
         <div className='card-row'> 
           <Card question={this.state.currentCard.text}
                 answer={this.state.currentCard.answer}

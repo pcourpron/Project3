@@ -77,7 +77,6 @@ class App extends React.Component {
 
   selectedQuestion(question) {
     this.setState({ selectedQuestion: question })
-
   }
   handleToggleLogin = (username,admin) => {
          this.setState(({loggedIn: true, username:username,admin:admin}),function(){
@@ -108,6 +107,7 @@ class App extends React.Component {
 
     logOut = ()=>{
       this.setState({username:''})
+      this.setState({admin:false})
       axios.get('/logout')
       console.log('hit')
 
@@ -116,11 +116,11 @@ class App extends React.Component {
     
 
 
+  
   componentDidMount() {
     this.getQuestions()
     this.getArticles()
   }
-
 
   render() {
     return (

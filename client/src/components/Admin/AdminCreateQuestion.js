@@ -140,7 +140,7 @@ class Admin extends React.Component {
 
             return (
                 <div className="form-group">
-                    <label for="question-answer">Question Answer</label>
+                    <label for="question-answer" style = {{fontWeight: "bold"}}>Question Answer</label>
                     <input
                         className="form-control"
                         id="question-answer"
@@ -276,13 +276,13 @@ class Admin extends React.Component {
             <div>
             <p style = {{fontStyle: "italic", marginTop: "5px", marginBottom: "5px"}}>Current Categories</p>
             {categories.map(element => (
-                <button className = "btn-sm btn-info" style ={{margin: "2px"}}
+                <button className = "btn-sm btn-success" style ={{margin: "2px"}}
                     onClick={this.handleCategoryClick}
                 >{element}</button>
                 
             ))}
         </div>
-
+     
         )
     }
 
@@ -293,12 +293,23 @@ class Admin extends React.Component {
     }
 
     modalContent = () => {
-        if (this.state.postQuestionResponse === "success") {
+        if (this.state.questionText ==='' || this.state.questionType===''|| this.state.category===''){
             return (
                 <div>
                     <h2>Your question has been created!</h2>
                     <Link to='questionType'><button>Back Home</button></Link>
                     <button onClick={ this.refreshPage }>Create another question</button>
+                    <h4>There was an error with your post</h4>
+                </div>
+            )
+        }
+        else{
+        if (this.state.postQuestionResponse === "success") {
+            return (
+                <div style={{padding:"30px"}}>
+                    <h3>Your question has been created!</h3>
+                    <button className = "btn btn-danger" style={{marginRight: "20px"}}>Back Home</button>
+                    <button className = "btn btn-success" onClick={ this.refreshPage }>Create another question</button>
                 </div>
             )
         } else if (this.state.postQuestionResponse === "fail") {
@@ -309,6 +320,7 @@ class Admin extends React.Component {
             )
         }
     }
+    }
 
     refreshPage = () =>{ 
         window.location.reload(); 
@@ -317,9 +329,9 @@ class Admin extends React.Component {
     render() {
         return (
             <div className="row" style ={{width: "50%", marginLeft: "auto", marginRight: "auto", marginTop: "60px"}} >
-                <h4 style ={{width:'100%',textAlign:"center"}}>Create a New Question</h4>
+                <h4 style ={{width:'100%',textAlign:"center", marginTop: "20px", fontWeight: "bold"}}>Create a New Question</h4>
                 <div className="col-md-12">
-                    <form style = {{border: "1px solid black", padding: "30px", borderRadius: "5px"}}onSubmit={this.handleSubmit}>
+                    <form style = {{border: "1px solid black", padding: "30px", borderRadius: "5px", backgroundColor: "rgb(242, 243, 244)", marginBottom: "30px"}}onSubmit={this.handleSubmit}>
                     <p style = {{marginBottom: "5px", fontWeight: "bold"}} >Question Type</p>
                         <div className="form-check">
                             <input
