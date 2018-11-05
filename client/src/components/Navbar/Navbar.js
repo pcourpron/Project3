@@ -12,7 +12,7 @@ const Navbar = (props)=>{
   <div className="collapse navbar-collapse" id="navbarNav">
     <ul className="navbar-nav ml-auto">
       <li className="nav-item active">
-       <Link to ='/'> <a className="nav-link">Home</a></Link>
+       <Link to ='/questionType'> <a className="nav-link">Home</a></Link>
       </li>
       <li className="nav-item">
        {props.name !== ''? null:<Link to='/Login'><a className="nav-link" >Login</a></Link>} 
