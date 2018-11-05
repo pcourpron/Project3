@@ -102,11 +102,13 @@ const Category = (props) => {
             :
             <div>
               <div className='row justify-content-center' style={{ marginTop: '20px' }}>
-                <h6> Select one of these categories to go to a random question in the category</h6>
+                <h6> Select one of these categories to go to the category</h6>
               </div>
               <div className='row' style={{ marginTop: '20px' }}>
                 <div className='col-md-12' style={{ backgroundColor: '#ecf5fa', borderRadius: '10px' }}>
                   <h5 style={{ width: '100%', textDecoration: 'underline' }}>Categories</h5>
+
+
                   {props.categories.filter(element => {
                     var categories = []
                     props.questions.filter(question => question.questionType === props.questionType).forEach(question => {
@@ -127,11 +129,18 @@ const Category = (props) => {
 
 
                   }).map(element => {
+                    var arrayLength = props.questions.filter(question=> question.category === element).length
+                    
                     return (
 
                       <Link to='/interview'><div className='row justify-content-center' style={{ listStyleType: 'none', fontWeight: 'bold', fontSize: '25px', textDecoration: '', backgroundColor: '#adedf4', marginBottom: '10px', color: 'black', borderRadius: '5px' }}
-                        onClick={() => { props.selectCategory(element) }}>  <span>{element}</span> </div></Link>
+                        onClick={() => { props.selectCategory(element) }}>  <span>{`${element} (${arrayLength})`}  </span> </div></Link>
                     ) })}
+
+
+
+
+
 
                 </div>
               </div>

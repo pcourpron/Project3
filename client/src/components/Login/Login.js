@@ -4,6 +4,9 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 // import Loaderbutton from "../Loaderbutton/Loaderbutton.js";
 import "./Login.css";
+
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import axios from "axios";
 
 export default class Login extends Component {
@@ -12,12 +15,28 @@ export default class Login extends Component {
 
     this.state = {
       email: "",
-      username: "",
       password: ""
     };
   }
 
-  
+  submit = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className='custom-ui d-flex justify-content-center'>
+            <div className = 'col'>
+            <p>Wrong Username/Password Combination </p>
+            
+            <button className = 'btn-danger' onClick={() => {
+                
+                onClose()
+            }}>Go Back</button>
+            </div>
+          </div>
+        )
+      }
+    })
+  };
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
@@ -33,23 +52,24 @@ export default class Login extends Component {
 
   //existing user
   handleSubmitLogin = (e) => {
-  
     e.preventDefault();
+
     const loginBody = {
       email: this.state.email,
-      username: this.state.username,
-      password: this.state.password,
-      admin: false
+      password: this.state.password
     }
-    console.log(loginBody)
-    axios.post("/login", loginBody).then(res => {
-      this.props.handleToggleLogin(this.setState.username)
 
-      console.log(res.data);
-    }).catch(err => {
-      console.log(err);
-    });
-  }
+    axios.post("/login", loginBody).then(res => {
+      console.log(res)
+      if (res.data === false){
+        this.submit()
+      }
+      else{
+     this.props.handleToggleLogin(res.data.username, res.data.admin)
+     this.props.history.history.push('/questionType')
+      }
+
+  })}
   
    render(){
      return(
@@ -81,17 +101,9 @@ export default class Login extends Component {
                   Login
                   </Button>
               </form>
+              
           </div>
-          // <div className="container-login">
-          //   <div className = "home-button">
-          //       <a href="/" type="button" className="btn-btn-light btn-lg active">Back Home!</a>
-          //     <div className="hometext">
-          //       <div id="htext">
-          //         <p>If you choose to go back to home page!</p>
-          //       </div>
-          //     </div>
-          //   </div>
-          // </div>
+
       );
     }
   }

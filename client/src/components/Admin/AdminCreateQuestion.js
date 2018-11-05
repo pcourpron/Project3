@@ -297,7 +297,7 @@ class Admin extends React.Component {
             return (
                 <div>
                     <h2>Your question has been created!</h2>
-                    <button>Back Home</button>
+                    <Link to='questionType'><button>Back Home</button></Link>
                     <button onClick={ this.refreshPage }>Create another question</button>
                 </div>
             )

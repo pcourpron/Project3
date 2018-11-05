@@ -130,7 +130,7 @@ class Question extends Component {
                     <Link to='/Comment' {...this.props}><button className='btn btn-primary'>Comment</button></Link>
 
                     <button className='btn btn-primary' onClick={this.clearEditor}> Reset</button>
-                    <button className='btn btn-primary'> Back</button>
+                    <Link to='/questionType' ><button className='btn btn-primary'> Back</button></Link>
                 </div>
             </div>
 

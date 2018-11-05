@@ -54,6 +54,7 @@ export default class App extends Component {
     return (
       <div className='flashcards'>
       <h1>Flashcards</h1>
+      <p> Click and Hold to see the back of the flashcard.</p>
         <div className='card-row'> 
           <Card question={this.state.currentCard.text}
                 answer={this.state.currentCard.answer}
