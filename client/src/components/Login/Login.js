@@ -61,14 +61,7 @@ export default class Login extends Component {
 
   
      
-      <div className="container-fluid-login" style ={ { backgroundImage: "url('https://images6.alphacoders.com/486/486293.png')",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        width: "100%",
-        minHeight: "100vh",
-        position: "fixed",
-        padding: "0",
-        margin: "0", }}>>
+      <div className="container-fluid-login"style={{ marginTop: '56px', backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100%", paddingTop:'40px'}}>
               <form className = "logForm" onSubmit={this.handleSubmitLogin}>
                   <FormGroup controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
