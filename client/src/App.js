@@ -117,11 +117,11 @@ class App extends React.Component {
     
 
 
+  
   componentDidMount() {
     this.getQuestions()
     this.getArticles()
   }
-
 
   render() {
     return (

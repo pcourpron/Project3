@@ -1,4 +1,4 @@
-#landing-page {
+.container-fluid {
     background-image: url("/image/abstract.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -7,7 +7,46 @@
 }
 
 #landing-page-text{
+    min-height: 100vh;
+    position:fixed;
+    padding:0;
+    margin:0;
+    /* padding-bottom: 300px; */
+}
+:local(#landing-page-text) {
     color: 'white';
     text-align:"center" 
 }
 
+:local(.btn-secondary) {
+    color: black;
+    background-color: white;
+    border-color:white;
+    margin-bottom: 80px;
+    margin-top: 0px;
+}
+
+:local(h1) {
+    font-family: monospace;
+    color: aliceblue;
+    font-size: 70px;
+    padding-top: 160px;
+    /* padding-top: 260px; */
+    
+}
+:local(p) {
+    color: white;
+    text-align: center;
+    font-family: monospace;
+    font-size: 20px;
+}
+:local(a) {
+    /* color: grey; */
+    text-align: center;
+    font-family: monospace;
+}
+
+:local(#justified-content-center) {
+    /* padding-bottom: 380px; */
+    padding-top: 260px;
+}

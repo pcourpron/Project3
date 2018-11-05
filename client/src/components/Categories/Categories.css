@@ -1,0 +1,53 @@
+.container-fluid {
+    background-image: url("/image/abstract.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
+    position:fixed;
+    padding:0;
+    margin:0;
+}
+.container {
+    margin-top: 160px;
+    /* background: whitesmoke; */
+    /* background-image: url("/image/abstract.jpg"); */
+    /* padding: 0; */
+}
+/* :local(.row){
+    height: 200px;
+} */
+:local(#Categories) {
+    border: 1px solid grey;
+    border-radius: 10px; 
+    padding: 5px;
+}
+
+#Questions {
+    border: 1px solid grey;
+    border-radius: 10px; 
+    padding: 5px;
+
+}
+
+:local(.justify-content-center) {
+    width: 100%; 
+    border-radius: 5px;
+}
+
+:local(h2) {
+    color: white; 
+    width:  90%; 
+    border-bottom: 1px solid grey; 
+    text-align: center;
+    padding: 20px;
+
+}
+
+:local(.col-md-6) {
+    padding-right: 5px;
+    margin: 10px
+}
+.shadow {
+    color: white;
+}

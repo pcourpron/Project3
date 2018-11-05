@@ -35,21 +35,21 @@ import "./Landingpage.css";
 const LandingPage = () => {
 
     return (
-        <div className="container-fluid" id='landing-page'>
-            <div className='row justify-content-center' style={{ paddingTop: '120px' }} >
-                <h1 style={{ color: 'white' }}> Welcome!</h1>
+        <div className = "container-fluid">
+            <div className ='row justify-content-center' >
+                <h1> Welcome!</h1>
             </div>
-            <div className='row justify-content-center'>
-                <div className='col-md-6'>
-                    <p id='landing-page-text'style={{ color: 'white', textAlign:"center" }} >This project was created to help us learn web development while
-                         also giving people a chance to practice their own coding skills
-                         on algoritms!
-                     </p>
+            <div className ='row justify-content-center'>
+                <div className ='col'>
+                    <p>Code Club is created to help you learn or improve your web development <br/>
+                        skills while giving you a chance to practice your own coding abilities <br/>
+                        on algoritms or learn theory with help of flash cards!
+                    </p>
                 </div>
             </div>
 
-            <div className = 'row justify-content-center'>
-            <Link to='/questionType'><button className='btn btn-secondary' style = {{marginTop:'80px'}}>Get Started</button></Link>
+            <div className = 'row justify-content-center' id = "get-started">
+            <Link to='/questionType'><button><a>Let's Get Started</a></button></Link>
             </div>
 
 
