@@ -36,6 +36,9 @@
 :local(button) {
     border-radius: 25px;
     background-color: #28a745;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1.25em;
 }
 
 :local(#justified-content-center) {

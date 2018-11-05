@@ -19,7 +19,7 @@ const LandingPage = () => {
             </div>
 
             <div className = 'row justify-content-center' id = "get-started">
-            <Link to='/questionType'><button><p>Let's Get Started</p></button></Link>
+            <Link to='/questionType'><button>Let's Get Started</button></Link>
             </div>
 
 

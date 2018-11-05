@@ -22,14 +22,15 @@
     }
   }
   .control-label {
-    color: white;
+    color:black;
     font-family: monospace;
     font-size: 20px;
   }
 
   .logForm {
-    padding-top: 280px;
     margin-right: 40px;
+    padding-bottom: 25%;
+    padding-top: 5%;
   }
   .form-control {
     font-family: monospace;
