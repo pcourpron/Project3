@@ -121,15 +121,7 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div className ="container-signup">
-          <div className = "home-button">
-            <a href="/" type="button" className="btn-btn-light btn-lg active">Back Home!</a>
-            <div className = "hometext">
-              <div id = "htext">
-                <p>If you choose to go back to home page!</p>
-              </div>
-            </div>
-          </div>
+      <div className ="container-signup" style={{marginTop:'56px'}}>
         <div className="Signup">
         <h2>Create New Account!</h2>
             {/* {this.state.newUser === null
