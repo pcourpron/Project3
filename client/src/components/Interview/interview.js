@@ -52,8 +52,8 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className='flashcards' style={{backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100vh"}}>
-      <h1>Flashcards</h1>
+      <div className='flashcards' style={{backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100%"}}>
+      <h1 style= {{marginTop: '40px', color: 'white'}}>Flashcards</h1>
         <div className='card-row'> 
           <Card question={this.state.currentCard.text}
                 answer={this.state.currentCard.answer}

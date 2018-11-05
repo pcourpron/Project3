@@ -3,7 +3,7 @@ import "./Category.css";
 import { Link } from 'react-router-dom'
 const Category = (props) => {
   return (
-    <div className='container-fluid' style={{ marginTop: '56px', backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100vh", paddingTop:'40px'}}>
+    <div className='container-fluid' style={{ marginTop: '56px', backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100%", paddingTop:'40px'}}>
       <div className='row' >
         <div className='col-md-10'>
 

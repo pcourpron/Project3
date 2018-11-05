@@ -1,12 +1,6 @@
 /* .navbar {
     color: aqua; */
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
 /* .navbar { */
     /* font-family: '', sans-serif;
     font-size: 18px;
@@ -95,7 +89,7 @@
         color: rgba(255, 255, 255, 1);
     }
 }
-:local(a){
+.nav-link{
     color: white;
     font-size: 20px;
     padding-top: 10px;

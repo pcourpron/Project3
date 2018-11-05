@@ -1,9 +1,8 @@
 .container-fluid {
-    background-image: url("/image/abstract.jpg");
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 #landing-page-text{
@@ -18,7 +17,7 @@
     text-align:"center" 
 }
 
-:local(h1) {
+.Welcome {
     font-family: monospace;
     color: aliceblue;
     font-size: 70px;
@@ -26,19 +25,13 @@
     /* padding-top: 260px; */
 }
 
-:local(p) {
+.landing-page-text {
     color: white;
     text-align: center;
     font-family: monospace;
     font-size: 20px;
 }
 
-:local(a) {
-    /* color: grey; */
-    text-align: center;
-    font-family: monospace;
-    padding: 10px;
-}
 
 :local(button) {
     border-radius: 25px;
