@@ -121,7 +121,7 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div className ="container-signup">
+      <div className ="container-signup"style={{ marginTop: '56px', backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100%", paddingTop:'40px'}}>
           <div className = "home-button">
             <a href="/" type="button" className="btn-btn-light btn-lg active">Back Home!</a>
             <div className = "hometext">
@@ -131,7 +131,7 @@ export default class Signup extends Component {
             </div>
           </div>
         <div className="Signup">
-        <h2>Create New Account!</h2>
+        <h1 className="newAccount">Create New Account!</h1>
             {/* {this.state.newUser === null
               ? this.renderForm()
               : this.renderConfirmationForm()} */}
