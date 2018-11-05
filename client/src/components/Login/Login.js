@@ -5,6 +5,8 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 // import Loaderbutton from "../Loaderbutton/Loaderbutton.js";
 import "./Login.css";
 import axios from "axios";
+//import { url } from "inspector";
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -32,9 +34,9 @@ export default class Login extends Component {
   }
 
   //existing user
-  handleSubmitLogin = (e) => {
+  handleSubmitLogin = async event => {
     console.log(this.state)
-    e.preventDefault();
+    .preventDefault();
     const loginBody = {
       email: this.state.email,
       username: this.state.username,
@@ -49,8 +51,15 @@ export default class Login extends Component {
   
    render(){
      return(
-          <div className="Login">
-              <form onSubmit={this.handleSubmitLogin}>
+      <div className="container-fluid-login" style ={ { backgroundImage: "url('https://images6.alphacoders.com/486/486293.png')",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        width: "100%",
+        minHeight: "100vh",
+        position: "fixed",
+        padding: "0",
+        margin: "0", }}>>
+              <form className = "logForm" onSubmit={this.handleSubmitLogin}>
                   <FormGroup controlId="email" bsSize="large">
                     <ControlLabel>Email</ControlLabel>
                     <FormControl

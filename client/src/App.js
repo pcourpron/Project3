@@ -42,9 +42,6 @@ class App extends React.Component {
     this.categoryClick = this.categoryClick.bind(this)
     this.selectedQuestion = this.selectedQuestion.bind(this)
     this.changeRunTime = this.changeRunTime.bind(this)
-
-
-
   }
 
   state = {
@@ -103,15 +100,10 @@ class App extends React.Component {
       console.log(this.state.runTime)
     })
   }
-
-
-
-
-
+  
   componentDidMount() {
     this.getQuestions('coding')
   }
-
 
   render() {
     return (
