@@ -50,7 +50,7 @@ class QuestionComment extends React.Component {
     render() {
 
         return (
-            <div className='container' style={{ marginTop: '100px' }}>
+            <div className='container-fluid' style={{ marginTop: '70px', backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)" }}>
                 <div className='row justify-content-center'>
                     <div className='col-md-6'>
                         <div className='row justify-content-center'>
@@ -99,15 +99,15 @@ class QuestionComment extends React.Component {
                             :
                             this.state.comments.map((element, index) => {
                                 return (
-                                    <div style={{border:'1px lightgrey solid', borderRadius:'7px'}}>
-                                        <div className='row' style={{ borderBottom: '1px solid grey', padding: '10px 0'}}>
+                                    <div style={{border:'1px lightgrey solid', borderRadius:'7px', backgroundColor: "#f1f1f1", marginBottom: "10px"}}>
+                                        <div className='row' style={{ borderBottom: '1px solid grey', paddingTop: "5px"}}>
                                             <div style={{paddingLeft:'10px'}}> <h6> {`Comment ${index + 1}`}</h6></div>
                                          
                                         </div>
-                                        <div className='row'>
+                                        <div className='row' style = {{paddingLeft:"5px", fontWeight: "bold"}}>
                                             {element.text}
                                         </div>
-                                        <div className='row'>
+                                        <div className='row'style={{paddingLeft:"5px", fontStyle: "italic"}}>
                                             Written by: {element.author === undefined ? 'anonymous' : element.author}
                                         </div>
                                     </div>
@@ -129,7 +129,7 @@ class QuestionComment extends React.Component {
                         </label><br />
                         <textarea name='comment' placeholder={`Enter your comment here!`} style={{ height: '100px', width: '300px' }} onChange={this.handleChange} required> </textarea>
                         <br></br>
-                        <input className='btn btn-primary' type="submit" value="Submit" />
+                        <input className='btn btn-success' type="submit" value="Submit" />
                     </form>
 
                 </div>

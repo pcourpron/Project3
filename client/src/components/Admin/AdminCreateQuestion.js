@@ -328,6 +328,7 @@ class Admin extends React.Component {
 
     render() {
         return (
+            <div className ="container-fluid" style={{backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)"}}>
             <div className="row" style ={{width: "50%", marginLeft: "auto", marginRight: "auto", marginTop: "60px"}} >
                 <h4 style ={{width:'100%',textAlign:"center", marginTop: "20px", fontWeight: "bold"}}>Create a New Question</h4>
                 <div className="col-md-12">
@@ -398,6 +399,7 @@ class Admin extends React.Component {
 
 
                 </div>
+            </div>
             </div>
         )
 

@@ -38,7 +38,7 @@ const Category = (props) => {
           {props.questionType === 'coding' ?
           <div>
           <div className='row justify-content-center' style={{ marginTop: '20px' }}>
-            <h6 style ={{color: "grey"}}> Select one of these categories to select an algorithm.</h6>
+            <h4 style ={{color: "grey"}}> Select one of these categories to select an algorithm.</h4>
           </div>
            { /* Coding Questions */}
             <div className='row' style={{ marginTop: '30px' }}>
@@ -102,7 +102,7 @@ const Category = (props) => {
             :
             <div>
               <div className='row justify-content-center' style={{ marginTop: '20px' }}>
-                <h6 style={{color: "grey"}}> Select one of these categories to go to a random question in the category</h6>
+                <h4 style={{color: "grey"}}> Select one of these categories to see the questions</h4>
               </div>
               <div className='row' style={{ marginTop: '20px' }}>
                 <div className='col-md-12' style={{ backgroundColor: '#F1F1F1', borderRadius: '10px' }}>
@@ -149,9 +149,9 @@ const Category = (props) => {
 
         <div className='col-md-2' style={{ borderLeft: '1px solid grey' }}>
           <div className='row text-center'>
-            <h6 style={{ color: "black" }}>Articles to help you learn!</h6>
+            <h4 style={{ color: "black" }}>Articles to help you learn!</h4>
             {props.articles.map(element => {
-              return (<div className='row' style={{ padding: "10px", backgroundColor: "#F1F1F1", border: '1px solid grey', borderRadius: "5px", marginBottom: '10px' }}> <a href={element.url}>{element.title}</a> </div>)
+              return (<div className='row' style={{ padding: "10px", backgroundColor: "#F1F1F1", border: '1px solid grey', borderRadius: "5px", marginBottom: '10px' }}> <a href={element.url} target="_blank">{element.title}</a> </div>)
 
             })}
 
