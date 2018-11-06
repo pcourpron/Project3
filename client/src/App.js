@@ -1,4 +1,3 @@
-
 import React, {Component} from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Landingpage from "./components/Landingpage/Landingpage.js";
@@ -13,6 +12,9 @@ import QuestionComment from "./components/Comment/index.js";
 import Navbar from './components/Navbar/Navbar'
 import InterviewQuestion from './components/interviewQuestion/interviewQuestion.js'
 import Interview from './components/Interview/interview';
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -89,6 +91,24 @@ class App extends React.Component {
       console.log(this.state.runTime)
     })
   }
+  submit = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className='custom-ui d-flex justify-content-center'>
+            <div className = 'col'>
+            <p>Logged Out!</p>
+            
+            <button className = 'btn-danger' onClick={() => {
+                
+                onClose()
+            }}>Go Back</button>
+            </div>
+          </div>
+        )
+      }
+    })
+  };
 
     changeQuestionType = (event)=>{
       this.setState({questionType: event.target.value})
@@ -109,8 +129,7 @@ class App extends React.Component {
       this.setState({username:''})
       this.setState({admin:false})
       axios.get('/logout')
-      console.log('hit')
-
+      this.submit()
     }
 
     
@@ -128,7 +147,9 @@ class App extends React.Component {
         <div>
           <Navbar admin = {this.state.admin}
           name = {this.state.username}
-          logOut={this.logOut}/>
+          logOut={this.logOut}
+        />
+
           <Route exact path="/Interview" 
           render = {()=>
           <Interview
@@ -206,6 +227,7 @@ class App extends React.Component {
           <InterviewQuestion/>}    />
 
           <Route exact path="/Login" render={(history)=>
+
           <Login
           handleToggleLogin = {this.handleToggleLogin}
           history = {history}
