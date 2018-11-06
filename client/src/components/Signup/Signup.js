@@ -121,15 +121,9 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div className ="container-signup"style={{ marginTop: '56px', backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)", height: "100%", paddingTop:'40px'}}>
-          <div className = "home-button">
-            <a href="/" type="button" className="btn-btn-light btn-lg active">Back Home!</a>
-            <div className = "hometext">
-              <div id = "htext">
-                <p>If you choose to go back to home page!</p>
-              </div>
-            </div>
-          </div>
+
+      <div className ="container-signup" style={{marginTop:'56px'}}>
+
         <div className="Signup">
         <h1 className="newAccount">Create New Account!</h1>
             {/* {this.state.newUser === null

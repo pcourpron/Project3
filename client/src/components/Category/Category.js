@@ -127,11 +127,18 @@ const Category = (props) => {
 
 
                   }).map(element => {
+                    var arrayLength = props.questions.filter(question=> question.category === element).length
+                    
                     return (
 
                       <Link to='/interview'><div className='row justify-content-center' style={{ listStyleType: 'none', fontSize: '25px', textDecoration: '', backgroundColor: 'lightGrey', marginBottom: '10px', color: 'black', borderRadius: '5px' }}
                         onClick={() => { props.selectCategory(element) }}>  <span>{element}</span> </div></Link>
                     ) })}
+
+
+
+
+
 
                 </div>
               </div>

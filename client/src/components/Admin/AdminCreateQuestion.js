@@ -296,6 +296,9 @@ class Admin extends React.Component {
         if (this.state.questionText ==='' || this.state.questionType===''|| this.state.category===''){
             return (
                 <div>
+                    <h2>Your question has been created!</h2>
+                    <Link to='questionType'><button>Back Home</button></Link>
+                    <button onClick={ this.refreshPage }>Create another question</button>
                     <h4>There was an error with your post</h4>
                 </div>
             )

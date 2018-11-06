@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Landingpage from "./components/Landingpage/Landingpage.js";
 import Signup from "./components/Signup/Signup.js";
 import Login from "./components/Login/Login.js";
-//import Product from "./components/pages/Product.js";
 import Question from "./components/Question/Question"
 import Category from "./components/Category/Category"
 import Categories from './components/Categories/Categories'
@@ -44,7 +43,8 @@ class App extends React.Component {
     articles :[],
     interviewQuestion: [],
     loggedIn: false,
-    username: ''
+    username: '',
+    admin: false
   }
 
   getQuestions = () => {
@@ -78,10 +78,8 @@ class App extends React.Component {
   selectedQuestion(question) {
     this.setState({ selectedQuestion: question })
   }
-
-  
-  handleToggleLogin = (username) => {
-         this.setState(({loggedIn: true, username:username}),function(){
+  handleToggleLogin = (username,admin) => {
+         this.setState(({loggedIn: true, username:username,admin:admin}),function(){
            console.log(this.state)
          });
        };
@@ -109,6 +107,7 @@ class App extends React.Component {
 
     logOut = ()=>{
       this.setState({username:''})
+      this.setState({admin:false})
       axios.get('/logout')
       console.log('hit')
 
@@ -127,7 +126,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Navbar admin = {false}
+          <Navbar admin = {this.state.admin}
           name = {this.state.username}
           logOut={this.logOut}/>
           <Route exact path="/Interview" 
@@ -206,7 +205,14 @@ class App extends React.Component {
           <Route exact path='/interviewQuestion' render={()=>
           <InterviewQuestion/>}    />
 
-          <Route exact path="/Login" component={Login} />
+          <Route exact path="/Login" render={(history)=>
+          <Login
+          handleToggleLogin = {this.handleToggleLogin}
+          history = {history}
+          
+          />
+          
+          } />
         </div>
 
       </Router>

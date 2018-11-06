@@ -58,11 +58,7 @@
   visibility:hidden;
   }
   
-  .home-button:hover .hometext {
-      visibility: visible;
-      transition: .5s ease;
-      display: block;
-  }
+
 
   .hometext{
   /* background-image: url("/image/backroundHover.png"); */

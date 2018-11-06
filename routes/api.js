@@ -2,7 +2,7 @@ const router = require("express").Router();
 var db = require("../models");
 var equal = require('deep-strict-equal');
 const questions = require( "../questions.json");
-
+const bcrypt = require('bcrypt')
 
 
 router.get("/api/allQuestions", function(req, res){
@@ -105,7 +105,7 @@ router.post("/submit", (req, res) => {
     username: req.body.username,
     password: req.body.password,
     passwordConf: req.body.passwordConf,
-    admin: false
+    admin: true
   }
 
   db.User.create(userData, function (error, user) {
@@ -122,41 +122,35 @@ router.post("/submit", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  // console.log("hello");
-
-  if (req.body.email && req.body.password) {
-    console.log("Authenticating...");
-    db.User.authenticate(req.body.email, req.body.password, function (error, user) {
-      if (error || !user) {
-        console.log("Error & no User");
-        var err = new Error('Wrong email or password.');
-        res.status(401).send(err);
-        // return next(err);
-      } else {
-        console.log("Request email:", req.body.email);
-        db.User.findOne({
-          email: req.body.email
-        }, (err, userData) => {
-          if (!err) {
-            req.session.id = userData.id;
-            res.status(200).send(req.session.id);
-          } else {
-            console.log("Login failed...");
-            res.status(400).json(err);
-          }
-        });
-        // return res.redirect('/profile');
+  db.User.findOne({email: req.body.email},function(err,user){
+   if (user !== null){
+    bcrypt.compare(req.body.password,user.password,function(err,response){
+      if (err){
+        res.send(false)
       }
-    });
-  } else {
-    console.log("All fields not fulfilled...");
-    var err = new Error('All fields required.');
-    res.status(400).json(err);
-    // return next(err);
-  }  
+      else{
+      if (response === true){
+        var sendBack = {}
+        sendBack.username = user.username
+        sendBack.admin = user.admin
+        res.send(sendBack)
+      }
+      else {
+        res.send(false)
+      }
+    }
+    })
+  }
+  else{
+    res.send(false)
+  }
+  }).catch(response =>{
+    res.send(false)
+  })
+
+  
 })
 
-// GET route after registering
 router.get('/profile', function (req, res, next) {
   db.User.findOne({ email: req.body.email })
       console.log(req.body)
@@ -178,7 +172,6 @@ router.get('/profile', function (req, res, next) {
     });
 });
 
-// GET for logout logout
 router.get('/logout', function (req, res, next) {
   if (req.session) {
     // delete session object
