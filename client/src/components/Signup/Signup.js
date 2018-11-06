@@ -122,7 +122,7 @@ export default class Signup extends Component {
   render() {
     return (
 
-      <div className ="container-signup" style={{marginTop:'56px'}}>
+      <div className ="container-signup" style={{fontFamily:'Arial',marginTop:'70px',backgroundImage: "linear-gradient(to top, #f1f1f1, #e9edf1, #ddeaef, #d1e7e8, #cae4db)"}}>
 
         <div className="Signup">
         <h1 className="newAccount">Create New Account!</h1>
