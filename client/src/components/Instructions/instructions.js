@@ -11,9 +11,9 @@ const Instructions = (props)=>{
     <p style ={{textAlign:"center"}}>Write your code inside the given function</p>
     <hr/>
     <br/>
-    <p style ={{textAlign:"center"}}><h5>Input: {JSON.stringify(props.tests[0].input)}</h5></p>
+    <p style ={{textAlign:"center"}}><h5>Input: {JSON.stringify(props.tests[1].input)}</h5></p>
     <br/>
-    <p style ={{textAlign:"center"}}><h5>Expected Output: {JSON.stringify(props.tests[0].expected)}</h5></p>
+    <p style ={{textAlign:"center"}}><h5>Expected Output: {JSON.stringify(props.tests[1].expected)}</h5></p>
     <br/>
     <hr/>
     <div>
