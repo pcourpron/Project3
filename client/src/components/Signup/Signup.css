@@ -1,28 +1,19 @@
 @media all and (min-width: 480px) {
-  .container-signup {
-      background-image: url("/image/430888.jpg");
-      /* background-position: center;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0; */
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; 
-      background-size: 100% 100%;
-      min-height: 100vh;
+ 
+  .newAccount {
+    text-align: center;
+    padding-bottom: 20px;
   }
   .Signup {
     padding: 0px 0;
-    padding-right: 340px;
     
   }
   
   .Signup form {
     margin: 0 auto;
     max-width: 200px;
+    padding-bottom: 10%;
+
   }
   
   .Signup form span.help-block {

@@ -121,9 +121,11 @@ export default class Signup extends Component {
 
   render() {
     return (
+
       <div className ="container-signup" style={{marginTop:'56px'}}>
+
         <div className="Signup">
-        <h2>Create New Account!</h2>
+        <h1 className="newAccount">Create New Account!</h1>
             {/* {this.state.newUser === null
               ? this.renderForm()
               : this.renderConfirmationForm()} */}
