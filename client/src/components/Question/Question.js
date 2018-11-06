@@ -128,7 +128,7 @@ class Question extends Component {
 
                     <Link to='/Comment' {...this.props}><button className='btn btn-success' >Comment</button></Link>
 
-                    <button className='btn btn-dance' onClick={this.clearEditor}> Reset</button>
+                    <button className='btn btn-danger' onClick={this.clearEditor}> Reset</button>
                     <Link to='/questionType' ><button className='btn btn-success'> Back</button></Link>
                 </div>
             </div>
