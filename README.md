@@ -18,3 +18,11 @@ Admin Function
     Password: admin
 - Admin can create new questions both as a flashcard and an algorithm 
 - Question will be immediately available for users to see and test 
+
+Coding Languages used:
+<br>
+![Portfolio About](readMeImages/html1.png)
+![Portfolio About](readMeImages/css2.jpg)
+![Portfolio About](readMeImages/reactBoot.png)
+![Portfolio About](readMeImages/javascript3.png)
+![Portfolio About](readMeImages/blackReact.png)

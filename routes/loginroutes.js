@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
+var User = require('../models/user.js');
 
 
 router.post("/submit", (req, res) => {
@@ -59,40 +59,40 @@ router.post("/login", (req, res) => {
 })
 
 // GET route after registering
-router.get('/profile', function (req, res, next) {
-  User.findOne({ email: req.body.email })
-      console.log(req.body)
-    .exec(function (err, user) {
-      if (err) {
-        return callback(err)
-      } else if (!user) {
-        var err = new Error('User not found.');
-        err.status = 401;
-        return callback(err);
-      }
-      bcrypt.compare(password, user.passwordConf, function (err, result) {
-        if (result === true) {
-          return callback(null, user);
-        } else {
-          return callback();
-        }
-      })
-    });
-});
+// router.get('/profile', function (req, res, next) {
+//   User.findOne({ email: req.body.email })
+//       console.log(req.body)
+//     .exec(function (err, user) {
+//       if (err) {
+//         return callback(err)
+//       } else if (!user) {
+//         var err = new Error('User not found.');
+//         err.status = 401;
+//         return callback(err);
+//       }
+//       bcrypt.compare(password, user.passwordConf, function (err, result) {
+//         if (result === true) {
+//           return callback(null, user);
+//         } else {
+//           return callback();
+//         }
+//       })
+//     });
+//   });
 
-// GET for logout logout
-router.get('/logout', function (req, res, next) {
-  if (req.session) {
-    // delete session object
-    req.session.destroy(function (err) {
-      if (err) {
-        return next(err);
-      } else {
-        return res.redirect('/login');
-      }
-    });
-  }
-});
+// // GET for logout logout
+// router.get('/logout', function (req, res, next) {
+//   if (req.session) {
+//     // delete session object
+//     req.session.destroy(function (err) {
+//       if (err) {
+//         return next(err);
+//       } else {
+//         return res.redirect('/login');
+//       }
+//     });
+//   }
+// });
 
 // router.post('/forgot', (req, res)=> {
 //     let {email} = req.body;
