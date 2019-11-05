@@ -7,7 +7,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "deep-strict-equal": "^0.2.0",
-    "mongoose": "^5.3.6",
+    "mongoose": "^5.7.5",
     "react": "^16.6.0",
     "react-ace": "^6.2.0",
     "react-bootstrap": "^0.32.4",
