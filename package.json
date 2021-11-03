@@ -49,7 +49,7 @@
     "reactstrap": "^6.5.0",
     "request": "^2.88.0",
     "typed.js": "^2.0.9",
-    "validator": "^10.10.0",
+    "validator": "^13.7.0",
     "video.js": "^7.2.4"
   }
 }
